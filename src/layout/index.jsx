@@ -54,9 +54,9 @@ const App = ({ children }) => {
       <Header className="bg-[#eee]">
         <div className="flex justify-center items-center h-full space-x-2">
           <Input
-            placeholder="Nhập từ khóa để tìm các lớp dạy kèmt"
+            placeholder="Nhập từ khóa để tìm các lớp dạy kèm"
             onSearch={(value) => console.log(value)}
-            className="w-96 h-10 rounded-none"
+            className="w-[500px] h-10 rounded-none"
             enterButton
           />
           <div className="space-x-2">
