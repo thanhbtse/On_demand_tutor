@@ -1,7 +1,11 @@
 import React, { Children } from "react";
-import { Breadcrumb, Layout, Menu, theme, Row, Col, Button } from "antd";
+import { Flex, Layout, Input, theme, Row, Col, Button } from "antd";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import facebooklogo from "../assets/logo/icons8-facebook-48.png";
+import youtulogo from "../assets/logo/icons8-youtube-64.png";
+import { SearchOutlined } from "@ant-design/icons";
+
 const { Header, Content, Footer } = Layout;
 
 const App = ({ children }) => {
@@ -24,7 +28,9 @@ const App = ({ children }) => {
           height: "80px",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", marginLeft:"100px" }}>
+        <div
+          style={{ display: "flex", alignItems: "center", marginLeft: "100px" }}
+        >
           <div>
             <img
               width={60}
@@ -45,7 +51,24 @@ const App = ({ children }) => {
           <Link to="#">Tìm Gia Sư</Link>
         </Button>
       </Header>
-      <Header className="bg-[#eee]"></Header>
+      <Header className="bg-[#eee]">
+        <div className="flex justify-center items-center h-full space-x-2">
+          <Input
+            placeholder="Nhập từ khóa để tìm các lớp dạy kèmt"
+            onSearch={(value) => console.log(value)}
+            className="w-96 h-10 rounded-none"
+            enterButton
+          />
+          <div className="space-x-2">
+            <Button
+              className="h-9  rounded-none flex justify-center items-center "
+              size="large"
+            >
+              <SearchOutlined  />
+            </Button>
+          </div>
+        </div>
+      </Header>
       <Content
         style={{
           padding: "0 200px",
@@ -101,16 +124,54 @@ const App = ({ children }) => {
               </div>
             </Col>
             <Col className="ml-[150px]">
-            <div className="flex flex-col space-y-6">
-              <span className="font-bold text-[18px]">CHÍNH SÁCH</span>
-              <span className="text-[#ff4778] text-[14px]">Chính Sách Người Dùng</span>
-              <span className="text-[#ff4778] text-[14px]">Điều Khoản Sử Dụng</span>
-              <span className="text-[#ff4778] text-[14px]">Chính Sách Thanh Toán</span>
-            </div>
+              <div className="flex flex-col space-y-6">
+                <span className="font-bold text-[18px]">CHÍNH SÁCH</span>
+                <span className="text-[#ff4778] text-[14px]">
+                  Chính Sách Người Dùng
+                </span>
+                <span className="text-[#ff4778] text-[14px]">
+                  Điều Khoản Sử Dụng
+                </span>
+                <span className="text-[#ff4778] text-[14px]">
+                  Chính Sách Thanh Toán
+                </span>
+              </div>
             </Col>
-            <Col className="ml-[250px]"> 
-              <div className="flex flex-col">
+            <Col className="ml-[250px]">
+              <div className="flex flex-col space-y-4">
                 <span className="font-bold text-[18px]">KẾT NỐI</span>
+                <Flex wrap gap="small">
+                  <a
+                    href="https://www.facebook.com/tanthanh.bui.94617/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button
+                      shape="circle"
+                      style={{
+                        backgroundImage: `url(${facebooklogo})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    />
+                  </a>
+                </Flex>
+                <Flex wrap gap="small">
+                  <a
+                    href="https://www.youtube.com/watch?v=xvFZjo5PgG0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button
+                      shape="circle"
+                      style={{
+                        backgroundImage: `url(${youtulogo})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    />
+                  </a>
+                </Flex>
               </div>
             </Col>
           </Row>
