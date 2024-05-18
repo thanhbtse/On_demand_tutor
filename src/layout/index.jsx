@@ -3,8 +3,8 @@ import { Flex, Layout, Input, theme, Row, Col, Button } from "antd";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import facebooklogo from "../assets/logo/icons8-facebook-48.png";
-import youtulogo from "../assets/logo/icons8-youtube-64.png";
 import hatlogo from "../assets/images/gia-su-online-logo-png-v2-60.png";
+import animateLogo from "../assets/logo/icons8-youtube.gif";
 import { SearchOutlined } from "@ant-design/icons";
 
 const { Header, Content, Footer } = Layout;
@@ -187,7 +187,7 @@ const App = ({ children }) => {
                     <Button
                       shape="circle"
                       style={{
-                        backgroundImage: `url(${youtulogo})`,
+                        backgroundImage: `url(${animateLogo})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                       }}
