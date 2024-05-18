@@ -1,11 +1,14 @@
-import React from 'react';
-
+import { Layout } from "antd";
+import { Content, Footer, Header } from "antd/es/layout/layout";
+import React from "react";
 
 function HomeView() {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <Layout>
+      <Header></Header>
+      <Content></Content>
+      <Footer></Footer>
+    </Layout>
   );
 }
 

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import facebooklogo from "../assets/logo/icons8-facebook-48.png";
 import youtulogo from "../assets/logo/icons8-youtube-64.png";
+import hatlogo from "../assets/images/gia-su-online-logo-png-v2-60.png";
 import { SearchOutlined } from "@ant-design/icons";
 
 const { Header, Content, Footer } = Layout;
@@ -35,7 +36,7 @@ const App = ({ children }) => {
             <img
               width={60}
               height={60}
-              src="../src/assets/images/gia-su-online-logo-png-v2-60.png"
+              src={hatlogo}
             />
           </div>
           <div className="flex flex-col mt-1 ml-2 responsive-hide">
@@ -47,7 +48,7 @@ const App = ({ children }) => {
             </span>
           </div>
         </div>
-        <Button className="mr-36 bg-[#ff4778] text-white font-bold text-[1rem] px-5 py-3 h-9 flex items-center justify-center rounded-none	border-transparent">
+        <Button className="mr-36 bg-[#ff4778] text-white font-bold text-[1rem] px-5 py-3 h-9 flex items-center justify-center rounded-sm	border-transparent">
           <Link to="#">Tìm Gia Sư</Link>
         </Button>
       </Header>
@@ -64,7 +65,7 @@ const App = ({ children }) => {
               className="h-9  rounded-none flex justify-center items-center "
               size="large"
             >
-              <SearchOutlined  />
+              <SearchOutlined />
             </Button>
           </div>
         </div>
@@ -106,35 +107,56 @@ const App = ({ children }) => {
               <div className="flex flex-col space-y-6 font-mono ">
                 <span className="font-bold text-[18px]">LIÊN KẾT</span>
                 <div className="flex flex-row divide-x-2 divide-solid space-x-2 text-[#ff4778]">
-                  <span className="font-normal text-[14px]">Giới Thiệu</span>
-                  <span className=" font-normal pl-2 text-[14px]">Liên Hệ</span>
+                  <Link className="font-normal text-[14px]" to="/gioi-thieu">
+                    Giới Thiệu
+                  </Link>
+                  <Link className="font-normal pl-2 text-[14px]" to="/lien-he">
+                    Liên Hệ
+                  </Link>
                 </div>
                 <div className="flex flex-row divide-x-2 divide-solid space-x-2 text-[#ff4778]">
-                  <span className="font-normal text-[14px]">Tài Liệu</span>
-                  <span className=" font-normal pl-2 text-[14px]">
+                  <Link className="font-normal text-[14px]" to="/tai-lieu">
+                    Tài Liệu
+                  </Link>
+                  <Link
+                    className="font-normal pl-2 text-[14px]"
+                    to="/kien-thuc"
+                  >
                     Kiến Thức
-                  </span>
-                  <span className=" font-normal pl-2 text-[14px]">
+                  </Link>
+                  <Link
+                    className="font-normal pl-2 text-[14px]"
+                    to="/kinh-nghiem"
+                  >
                     Kinh Nghiệm
-                  </span>
+                  </Link>
                 </div>
-                <span className=" text-[#ff4778] text-[14px]">
-                  <Link to="/login">Tài Khoản</Link>
-                </span>
+                <Link className="text-[#ff4778] text-[14px]" to="/login">
+                  Tài Khoản
+                </Link>
               </div>
             </Col>
             <Col className="ml-[150px]">
               <div className="flex flex-col space-y-6">
                 <span className="font-bold text-[18px]">CHÍNH SÁCH</span>
-                <span className="text-[#ff4778] text-[14px]">
+                <Link
+                  className="text-[#ff4778] text-[14px]"
+                  to="/chinh-sach-nguoi-dung"
+                >
                   Chính Sách Người Dùng
-                </span>
-                <span className="text-[#ff4778] text-[14px]">
+                </Link>
+                <Link
+                  className="text-[#ff4778] text-[14px]"
+                  to="/dieu-khoan-su-dung"
+                >
                   Điều Khoản Sử Dụng
-                </span>
-                <span className="text-[#ff4778] text-[14px]">
+                </Link>
+                <Link
+                  className="text-[#ff4778] text-[14px]"
+                  to="/chinh-sach-thanh-toan"
+                >
                   Chính Sách Thanh Toán
-                </span>
+                </Link>
               </div>
             </Col>
             <Col className="ml-[250px]">
