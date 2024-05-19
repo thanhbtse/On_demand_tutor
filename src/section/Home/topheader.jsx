@@ -4,8 +4,10 @@ import { Content, Footer, Header } from "antd/es/layout/layout";
 import image from "../../assets/images/homepage-banner-giasuonlinevn-1280-1024x672.jpg";
 import "../../App.css";
 import { Link } from "react-router-dom";
+import Description from "./AboutHome";
+
 function topHeader() {
-  const { Header, Footer } = Layout;
+  const { Header, Footer, Content } = Layout;
   return (
     <div>
       <Layout>
@@ -100,28 +102,32 @@ function topHeader() {
             </Row>
           </div>
         </Header>
-        <Content>
-          <div>
-            <h1>Helli</h1>
-          </div>
+        <Content
+        >
+          <Description />
         </Content>
         <Footer className="Footer">
           <Row className="flex flex-col text-white space-y-10">
-          <p className="font-bold text-2xl items-center"> Hãy Bắt Đầu Với Gia Sư Online Ngay Hôm Nay!</p>
-          <Row
-            gutter={[48, 8]}
-            className="space-x-4 md:space-x-8 lg:space-x-12 xl:space-x-16 2xl:space-x-20 mt-5 items-center justify-center"
-          >
-            <Button className="bg-pink-600 text-white py-2 px-4 border-none rounded cursor-pointer flex items-center justify-center font-bold w-40 h-10 md:w-32 lg:w-48 text-xs sm:text-sm">
-              <Link to="/tim-gia-su-online" className="text-white no-underline">
-                Tìm Gia Sư Theo Lớp
-              </Link>
-            </Button>
-            <Button className="bg-pink-600 text-white py-2 px-4 border-none rounded cursor-pointer flex items-center justify-center font-bold w-40 h-10 md:w-32 lg:w-48 text-xs sm:text-sm">
-              <Link to="/tai-khoan" className="text-white no-underline">
-                Đăng ký làm gia sư
-              </Link>
-            </Button>
+            <p className="font-bold text-2xl items-center">
+              Hãy Bắt Đầu Với Gia Sư Online Ngay Hôm Nay!
+            </p>
+            <Row
+              gutter={[48, 8]}
+              className="space-x-4 md:space-x-8 lg:space-x-12 xl:space-x-16 2xl:space-x-20 mt-5 items-center justify-center"
+            >
+              <Button className="bg-pink-600 text-white py-2 px-4 border-none rounded cursor-pointer flex items-center justify-center font-bold w-40 h-10 md:w-32 lg:w-48 text-xs sm:text-sm">
+                <Link
+                  to="/tim-gia-su-online"
+                  className="text-white no-underline"
+                >
+                  Tìm Gia Sư Theo Lớp
+                </Link>
+              </Button>
+              <Button className="bg-pink-600 text-white py-2 px-4 border-none rounded cursor-pointer flex items-center justify-center font-bold w-40 h-10 md:w-32 lg:w-48 text-xs sm:text-sm">
+                <Link to="/tai-khoan" className="text-white no-underline">
+                  Đăng ký làm gia sư
+                </Link>
+              </Button>
             </Row>
           </Row>
         </Footer>
