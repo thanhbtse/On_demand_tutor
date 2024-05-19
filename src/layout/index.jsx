@@ -1,5 +1,5 @@
 import React, { Children } from "react";
-import { Flex, Layout, Input, theme, Row, Col, Button } from "antd";
+import { Flex, Layout, Input, theme, Row, Col, Button, Divider } from "antd";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import facebooklogo from "../assets/logo/icons8-facebook-48.png";
@@ -8,11 +8,12 @@ import animateLogo from "../assets/logo/icons8-youtube.gif";
 import { SearchOutlined } from "@ant-design/icons";
 
 const { Header, Content, Footer } = Layout;
-
+const facebookLink = "https://www.facebook.com/tanthanh.bui.94617/";
+const youtubeLink = "https://www.youtube.com/watch?v=xvFZjo5PgG0";
 const App = ({ children }) => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  // const {
+  //   token: {borderRadiusLG : 1, },
+  // } = theme.useToken();
 
   App.propTypes = {
     children: PropTypes.node.isRequired,
@@ -72,26 +73,27 @@ const App = ({ children }) => {
         <div style={{ flex: "1 0 auto" }}>
           <Content
             style={{
-              padding: "0 200px",
+              padding: "0 0",
+              borderRadius: "0px",
             }}
           >
             <div
               style={{
-                padding: 24,
                 minHeight: 380,
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
+                borderRadius: 1,
               }}
             >
               {children}
             </div>
           </Content>
         </div>
-        <Footer className=" bottom-20">
-          <div className="ml-3 md:ml-12 mr-2 md:mr-10">
-            <Row gutter={[16, 16]} className="md:gutter-[48,16]">
-              <Col className="m-auto md:m-0">
-                <div className="flex flex-col space-y-2 md:space-y-6 font-mono">
+        <Footer className="bottom-20 bg-[#eee]">
+          <div className="ml-3 md:ml-24 mr-2 md:mr-auto">
+            <Row
+              gutter={[48, 16]}
+            >
+              <Col span={7}>
+                <div className="flex flex-col space-y-2 md:space-y-6 lg:space-y-4 xl:space-y-6 2xl:space-y-8 font-mono">
                   <span className="font-bold text-[18px]">GIASUONLINE.VN</span>
                   <span className="font-normal text-[14px]">
                     Địa chỉ: Lưu Hữu Phước, Đông Hoà, Dĩ An, Bình Dương
@@ -104,8 +106,8 @@ const App = ({ children }) => {
                   </span>
                 </div>
               </Col>
-              <Col className="ml-0 md:ml-[200px]">
-                <div className="flex flex-col space-y-2 md:space-y-6 font-mono">
+              <Col span={6}>
+                <div className="flex flex-col space-y-2 md:space-y-6 lg:space-y-4 xl:space-y-6 2xl:space-y-8 font-mono">
                   <span className="font-bold text-[18px]">LIÊN KẾT</span>
                   <div className="flex flex-row divide-x-2 divide-solid space-x-2 text-[#ff4778]">
                     <Link className="font-normal text-[14px]" to="/gioi-thieu">
@@ -140,7 +142,7 @@ const App = ({ children }) => {
                   </Link>
                 </div>
               </Col>
-              <Col className="ml-0 md:ml-[150px]">
+              <Col span={6}>
                 <div className="flex flex-col space-y-2 md:space-y-6 font-mono">
                   <span className="font-bold text-[18px]">CHÍNH SÁCH</span>
                   <Link
@@ -163,12 +165,12 @@ const App = ({ children }) => {
                   </Link>
                 </div>
               </Col>
-              <Col className="ml-0 md:ml-[250px]">
+              <Col span={4}>
                 <div className="flex flex-col space-y-1 md:space-y-4 font-mono">
                   <span className="font-bold text-[18px] ">KẾT NỐI</span>
                   <Flex wrap gap="small">
                     <a
-                      href="https://www.facebook.com/tanthanh.bui.94617/"
+                      href={facebookLink}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -184,7 +186,7 @@ const App = ({ children }) => {
                   </Flex>
                   <Flex wrap gap="small">
                     <a
-                      href="https://www.youtube.com/watch?v=xvFZjo5PgG0"
+                      href={youtubeLink}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -205,7 +207,6 @@ const App = ({ children }) => {
         </Footer>
         <Footer
           style={{
-            
             textAlign: "center",
             backgroundColor: "#36174d",
             color: "white",
@@ -216,7 +217,7 @@ const App = ({ children }) => {
             width: "100%",
           }}
         >
-          Gia sư online ©{new Date().getFullYear()} Công ty TNHH Nhóm 4 thành
+          Gia sư online © {new Date().getFullYear()} Công ty TNHH nhóm 4 thành
           viên
         </Footer>
       </div>

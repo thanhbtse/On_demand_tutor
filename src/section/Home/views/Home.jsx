@@ -1,14 +1,10 @@
-import { Layout } from "antd";
-import { Content, Footer, Header } from "antd/es/layout/layout";
+
 import React from "react";
+import TopHeader from "../../Home/topheader";
 
 function HomeView() {
   return (
-    <Layout>
-      <Header></Header>
-      <Content></Content>
-      <Footer></Footer>
-    </Layout>
+    <TopHeader />
   );
 }
 
