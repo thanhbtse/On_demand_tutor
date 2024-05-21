@@ -46,7 +46,7 @@ const App = ({ children }) => {
           </div>
         </div>
         <Button className="mr-36 bg-[#ff4778] text-white font-bold text-[1rem] px-5 py-3 h-9 flex items-center justify-center rounded-sm	border-transparent">
-          <Link to="#">Tìm Gia Sư</Link>
+          <Link to="/tim-gia-su-online">Tìm Gia Sư</Link>
         </Button>
       </Header>
       <Header className="bg-[#eee]">
@@ -109,7 +109,7 @@ const App = ({ children }) => {
               <Col span={6}>
                 <div className="flex flex-col space-y-2 md:space-y-6 lg:space-y-4 xl:space-y-6 2xl:space-y-8 font-mono">
                   <span className="font-bold text-[18px]">LIÊN KẾT</span>
-                  <div className="flex flex-row divide-x-2 divide-solid space-x-2 text-[#ff4778]">
+                  <div className="flex flex-row divide-x-2 h-5 divide-gray-300 space-x-2 text-[#ff4778]">
                     <Link className="font-normal text-[14px]" to="/gioi-thieu">
                       Giới Thiệu
                     </Link>
@@ -120,7 +120,7 @@ const App = ({ children }) => {
                       Liên Hệ
                     </Link>
                   </div>
-                  <div className="flex flex-row divide-x-2 divide-solid space-x-2 text-[#ff4778]">
+                  <div className="flex flex-row divide-x-2 h-5 divide-solid divide-gray-300 space-x-2 text-[#ff4778]">
                     <Link className="font-normal text-[14px]" to="/tai-lieu">
                       Tài Liệu
                     </Link>

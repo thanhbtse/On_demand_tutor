@@ -1,14 +1,14 @@
 function ContactView() {
   return (
-    <div className="flex flex-col space-y-4 font-sans text-center sm:text-left items-center">
-      <h1 className="text-4xl sm:text-5xl lg:text-6xl">Liên Hệ</h1>
-      <span className="text-lg sm:text-xl lg:text-2xl">
+    <div className="flex flex-col space-y-4 font-sans pl-[250px] pt-11 text-[#36174d]">
+      <h1 className="text-2xl font-semibold">Liên Hệ</h1>
+      <span className="text-md sm:text-lg lg:text-lg">
         Liên hệ với chúng tôi qua các kênh sau
       </span>
-      <span className="text-lg sm:text-xl lg:text-2xl">
-        Email: nguyenvanthanh.gl@gmail.com
+      <span className="text-lg sm:text-lg lg:text-lg">
+        Email: thanhbtse161127@fpt.edu.vn
       </span>
-      <span className="text-lg sm:text-xl lg:text-2xl">Tel: 0989897338</span>
+      <span className="text-lg sm:text-lg lg:text-lg">Tel: 0942557312</span>
     </div>
   );
 }
