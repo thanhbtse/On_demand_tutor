@@ -460,6 +460,37 @@ function Description() {
           </p>
         </div>
       </div>
+
+      {/* This is the 12 section of the Description component**/}
+      <div className="space-y-4 text-[#36174d]">
+        <p className="text-xl font-bold">Tìm Kiếm Gia Sư và Lớp Học</p>
+        <div className="text-[#36174d] space-y-6 text-base">
+          <p>
+            Phụ huynh và học sinh có thể tìm kiếm và duyệt qua danh sách các gia
+            sư và lớp học trực tuyến dựa trên môn học, khu vực, giá cả, và nhiều
+            tiêu chí khác.
+          </p>
+          <p>
+            Chức năng chọn lọc và tìm kiếm giúp phụ huynh học sinh tìm được lựa
+            chọn phù hợp nhất với nhu cầu của mình.
+          </p>
+        </div>
+      </div>
+
+      {/* */}
+      <div className="space-y-4 text-[#36174d]">
+        <p className="text-xl font-bold">Tương Tác Trực Tiếp</p>
+        <div className="text-[#36174d] space-y-6 text-base">
+          <p>
+            Chúng tôi cung cấp các phương tiện để phụ huynh và học sinh có thể
+            liên hệ và tương tác trực tiếp với gia sư.
+          </p>
+          <p>
+            Họ có thể trò chuyện, thảo luận chi tiết về nội dung học tập và sắp
+            xếp lịch học.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
