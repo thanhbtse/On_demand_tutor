@@ -3,7 +3,7 @@ import React from "react";
 
 function Description() {
   return (
-    <div className="flex flex-col space-y-10 px-[400px] py-20">
+    <div className="flex flex-col space-y-10 2xl:px-[350px] lg:px-[60px] xl:px-[60px] md:px-[60px] py-20">
       {/* This is the first section of the Description component */}
 
       <div className="md:flex bg-[#36174d] text-white text-[25px] font-bold items-center justify-center h-[250px]">
