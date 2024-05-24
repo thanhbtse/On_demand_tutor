@@ -8,7 +8,7 @@ function App() {
   return (
     <>
      <Router />
-      <FloatButton.BackTop icon={<UpOutlined />}/>
+      <FloatButton.BackTop icon={<UpOutlined />} shape='square' />
     </>
   )
 }

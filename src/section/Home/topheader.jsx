@@ -5,6 +5,7 @@ import image from "../../assets/images/homepage-banner-giasuonlinevn-1280-1024x6
 import "../../App.css";
 import { Link } from "react-router-dom";
 import Description from "./AboutHome";
+import ListTutor from "./tutorList";
 
 function topHeader() {
   const { Header, Footer, Content } = Layout;
@@ -104,6 +105,7 @@ function topHeader() {
         </Header>
         <Content
         >
+          <ListTutor />
           <Description />
         </Content>
         <Footer className="Footer">

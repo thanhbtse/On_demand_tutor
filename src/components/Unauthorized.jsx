@@ -3,12 +3,11 @@ import React from "react";
 import { Button, Result } from "antd";
 
 const Unauthorized = () => {
-  
   return (
     <Result
       status="403"
       title="403"
-      subTitle={t("Sorry, you are not authorized to access this page.")}
+      subTitle="Xin lỗi, bạn không được phép truy cập trang này."
       extra={
         <Button type="primary" className="bg-[#1677ff]">
           Back home
