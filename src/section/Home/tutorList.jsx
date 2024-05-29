@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import "../../App.css";
 import Meta from "antd/es/card/Meta";
 import background from "../../assets/images/default-store-banner.png";
+import meme from "../../assets/images/images.jpg";
+
+
 function ListTutor() {
   const [loading, setLoading] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
@@ -57,7 +60,7 @@ function ListTutor() {
       {/* filter search*/}
       {showFilter && (
         <div className={`showFilter ${showFilter ? "open" : "closed"}`}>
-          <div className="bg-white h-32 ">
+          <div className="bg-white h-32">
             <div className="space-y-4 p-4 ">
               <Input className="h-14" placeholder="Search Vendors" />
               <div>
@@ -75,20 +78,21 @@ function ListTutor() {
           <Col span={8}>
             <Card
               className="w-80 shadow-md rounded-none "
-              cover={<img alt="example" src={background} />}
+              cover={<img alt="example" src={background}  />}
               actions={[
                 <Button
                   className=" bg-[#ff4778] text-white mr-56"
                   shape="circle"
+                  size="large"
                 >
-                  <RightOutlined className="align-middle" />
+                  <RightOutlined className="flex align-middle "  />
                 </Button>,
               ]}
             >
               <Skeleton loading={loading} avatar active>
                 <Meta
                   avatar={
-                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=2" />
+                    <Avatar src={meme} size="large" className=""/>
                   }
                   title="Card title"
                   description="This is the description"
