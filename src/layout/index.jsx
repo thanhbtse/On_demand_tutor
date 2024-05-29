@@ -217,7 +217,7 @@ const App = ({ children }) => {
             width: "100%",
           }}
         >
-          Gia sư online © {new Date().getFullYear()} Công ty TNHH nhóm 4 thành
+          Gia sư online © {new Date().getFullYear()} Công ty TNHH nhóm 5 thành
           viên
         </Footer>
       </div>
