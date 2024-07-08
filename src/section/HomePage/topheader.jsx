@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Col, Layout, Row } from "antd";
-import { Content, Footer, Header } from "antd/es/layout/layout";
 import image from "../../assets/images/homepage-banner-giasuonlinevn-1280-1024x672.jpg";
 import "../../App.css";
 import { Link } from "react-router-dom";

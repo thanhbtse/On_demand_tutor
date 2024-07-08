@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import ContactView from "../section/Home/views/Contact";
+import ContactView from "../section/HomePage/views/Contact";
 
 function ContactPage() {
     return(

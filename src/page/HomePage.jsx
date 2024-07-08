@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import HomeView from "../../src/section/Home/views/Home";
+import HomeView from "../section/HomePage/views/Home";
 
 function HomePage() {
   return (
