@@ -1,0 +1,1 @@
+export { default as TurtorDetailView } from "../views/TurtorDetailView";

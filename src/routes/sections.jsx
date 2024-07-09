@@ -1,14 +1,14 @@
 import { Children, Suspense, lazy } from "react";
 import { Navigate, Outlet, useRoutes } from "react-router-dom";
-import { Error404, Loading, ScrollToTop } from "../components";
-import App from "../layout";
-import DashboardLayout from "../layout";
+import { Error404, Loading, ScrollToTop, AdminError } from "../components";
+import App from "../layout/index";
+import DashboardLayout from "../layout/admin";
 import TutorSearchPage from "../page/TutorSearchPage";
-import { Breadcrumb } from "antd";
 
 export const HomePage = lazy(() => import("../page/HomePage"));
 export const ContactPage = lazy(() => import("../page/ContactPage"));
 export const AccountPage = lazy(() => import("../page/AccountPage"));
+export const TurtorInfoPage = lazy(() => import("../page/TurtorInfoPage"));
 export const Router = () => {
   const routes = useRoutes([
     {
@@ -22,7 +22,6 @@ export const Router = () => {
           </ScrollToTop>
         </App>
       ),
-
       children: [
         {
           path: "/",
@@ -41,26 +40,33 @@ export const Router = () => {
           element: <AccountPage />,
         },
         {
+          path: "/gia-su/",
+          element: <TurtorInfoPage />,
+        },
+        {
           path: "*",
           element: <Error404 />,
         },
       ],
     },
-    // {
-    //   path: "/admin",
-    //   element: (
-    //     <DashboardLayout>
-    //     <ScrollToTop>
-    //       <Suspense fallback={<Loading />}>
-    //         <Outlet />
-    //       </Suspense>
-    //     </ScrollToTop>
-    //   </DashboardLayout>
-    //   ),
-    //   children:[
-
-    //   ],
-    // },
+    {
+      path: "/admin",
+      element: (
+        <DashboardLayout>
+        <ScrollToTop>
+          <Suspense fallback={<Loading />}>
+            <Outlet />
+          </Suspense>
+        </ScrollToTop>
+      </DashboardLayout>
+      ),
+      children:[
+        {
+          path: "*",
+          element: <AdminError />,
+        },
+      ],
+    },
   ]);
   return routes;
 };
