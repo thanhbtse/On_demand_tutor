@@ -1,5 +1,6 @@
 import React from "react";
 import { Breadcrumb, Button, Col, Row, Select, Card, Rate } from "antd";
+import { Link } from "react-router-dom";
 const { Meta } = Card;
 
 function SearchTutor() {
@@ -73,33 +74,37 @@ function SearchTutor() {
           </div>
         </div>{" "}
       </div>
-      <Card
-        hoverable
-        className="max-w-[23rem]  shadow-md rounded-lg overflow-hidden"
-        cover={
-          <img
-            alt="Profile"
-            src="https://giasuonline.vn/wp-content/uploads/2023/09/384821589_339766908712324_8739744638444568107_n-300x300.jpg"
-            className="w-full h-64 object-cover"
-          />
-        }
-      >
-        <Meta
-          title={<p className="text-sm text-gray-400 ">Cho Trẻ Em</p>}
-          description={
-            <h2 className="text-lg font-medium text-black">
-              <strong>Gia sư dạy kèm tiếng anh cho trẻ em </strong>
-            </h2>
+      <Link to="/view-detail-tutor">
+        <Card
+          hoverable
+          className="max-w-[23rem]  shadow-md rounded-lg overflow-hidden"
+          cover={
+            <img
+              alt="Profile"
+              src="https://giasuonline.vn/wp-content/uploads/2023/09/384821589_339766908712324_8739744638444568107_n-300x300.jpg"
+              className="w-full h-64 object-cover"
+            />
           }
-        />
-        <div className="mt-2 mb-4">
-          <Rate disabled defaultValue={5} className="text-yellow-500" />
-        </div>
-        <div className="flex">
-          <div className="text-lg text-gray-600 line-through">200,000.00 ₫</div>
-          <div className="text-lg font-bold ">150,000.00 ₫</div>
-        </div>
-      </Card>
+        >
+          <Meta
+            title={<p className="text-sm text-gray-400 ">Cho Trẻ Em</p>}
+            description={
+              <h2 className="text-lg font-medium text-black">
+                <strong>Gia sư dạy kèm tiếng anh cho trẻ em </strong>
+              </h2>
+            }
+          />
+          <div className="mt-2 mb-4">
+            <Rate disabled defaultValue={5} className="text-yellow-500" />
+          </div>
+          <div className="flex">
+            <div className="text-lg text-gray-600 line-through">
+              200,000.00 ₫
+            </div>
+            <div className="text-lg font-bold ">150,000.00 ₫</div>
+          </div>
+        </Card>
+      </Link>
     </div>
   );
 }

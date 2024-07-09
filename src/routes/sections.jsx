@@ -40,10 +40,6 @@ export const Router = () => {
           element: <AccountPage />,
         },
         {
-          path: "/gia-su/",
-          element: <TurtorInfoPage />,
-        },
-        {
           path: "*",
           element: <Error404 />,
         },
