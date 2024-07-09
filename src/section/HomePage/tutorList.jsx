@@ -5,7 +5,7 @@ import "../../App.css";
 import Meta from "antd/es/card/Meta";
 import background from "../../assets/images/default-store-banner.png";
 import meme from "../../assets/images/images.jpg";
-
+import { Link } from "react-router-dom";
 
 function ListTutor() {
   const [loading, setLoading] = useState(false);
@@ -36,7 +36,7 @@ function ListTutor() {
         className="bg-white p-5 justify-center items-center shadow-lg"
       >
         <div className="float-left font-[14px] pt-2">
-          Total stores showing: 61
+          Total tutors showing: 61
         </div>
         <div className="float-right flex flex-row space-x-4 ">
           <Button
@@ -50,7 +50,7 @@ function ListTutor() {
             Sort by:
             <Select
               defaultValue="lucy"
-              className="w-[130px] rounded-none"
+              className="my-select-container w-[130px] rounded-none "
               onChange={handleChange}
               options={options}
             />
@@ -78,21 +78,23 @@ function ListTutor() {
           <Col span={8}>
             <Card
               className="w-80 shadow-md rounded-none "
-              cover={<img alt="example" src={background}  />}
+              cover={<img alt="example" src={background} />}
               actions={[
-                <Button
-                  className=" bg-[#ff4778] text-white mr-56"
-                  shape="circle"
-                  size="large"
-                >
-                  <RightOutlined className="flex align-middle "  />
-                </Button>,
+                <Link to={`/gia-su/`}>
+                  <Button
+                    className=" bg-[#ff4778] text-white mr-56"
+                    shape="circle"
+                    size="large"
+                  >
+                    <RightOutlined className="flex align-middle" />
+                  </Button>
+                </Link>,
               ]}
             >
               <Skeleton loading={loading} avatar active>
                 <Meta
                   avatar={
-                    <Avatar src={meme} size="large" className=""/>
+                    <Avatar src={meme} size="large" className="border-4" />
                   }
                   title="Card title"
                   description="This is the description"
