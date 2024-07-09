@@ -31,16 +31,6 @@
   font-weight: inherit;
 }
 
-.container p:first-child {
-  font-weight: bold;
-  font-size: 2rem;
-  margin-left: 120px;
-}
-
-.container p:last-child {
-  margin-left: 140px;
-}
-
 .container .button {
   background-color: #ff4778;
   color: white;

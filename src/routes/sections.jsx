@@ -9,6 +9,7 @@ import { Breadcrumb } from "antd";
 export const HomePage = lazy(() => import("../page/HomePage"));
 export const ContactPage = lazy(() => import("../page/ContactPage"));
 export const AccountPage = lazy(() => import("../page/AccountPage"));
+export const DetailTutorPage = lazy(() => import("../page/DetailTutorPage"));
 export const Router = () => {
   const routes = useRoutes([
     {
@@ -39,6 +40,10 @@ export const Router = () => {
         {
           path: "/tai-khoan",
           element: <AccountPage />,
+        },
+        {
+          path: "/view-detail-tutor",
+          element: <DetailTutorPage />,
         },
         {
           path: "*",
