@@ -137,7 +137,7 @@ const App = ({ children }) => {
                       Kinh Nghiệm
                     </Link>
                   </div>
-                  <Link className="text-[#ff4778] text-[14px]" to="/login">
+                  <Link className="text-[#ff4778] text-[14px]" to="/tai-khoan">
                     Tài Khoản
                   </Link>
                 </div>
