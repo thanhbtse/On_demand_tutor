@@ -2,9 +2,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
-import { Layout, Menu, notification } from "antd";
+import { Layout, Menu, notification, Dropdown } from "antd";
 import {
   SettingOutlined,
   UsergroupAddOutlined,
@@ -16,11 +15,8 @@ import {
   FileSearchOutlined,
   UserAddOutlined,
 } from "@ant-design/icons";
-import useAuth from "@/hooks/useAuth";
-import { FloatButtonClick } from "@/components";
-import avatarAdmin from "../assets/images/ttxvn-tong-thong-nga-du-hoi-nghi-quoc-te-ve-libya-4390530-673.jpg";
-import avatarTrainer from "../assets/images/";
-import hatlogo from "../assets/images/gia-su-online-logo-png-v2-60.png"
+import meme from "../assets/images/images.jpg";
+import hatlogo from "../assets/logo/187390886-black-graduate-hat-with-golden-element-on-white-background-flat-design-illustration-vector-graphics.jpg";
 
 const { Content, Sider, Footer } = Layout;
 
@@ -35,46 +31,50 @@ function getItem(label, key, icon, children, path) {
 }
 
 const items = [
-  getItem("Home", "1", <HomeOutlined />, null, "/dashboard"),
+  getItem("Home", "1", <HomeOutlined />, null, "/admin/dashboard"),
   getItem("Student", "sub1", <UserAddOutlined />, [
-    getItem("Student list", "2", null, null, "/student/view"),
-    getItem("Reserve list", "3", null, null, "/reverve/view"),
+    getItem("Student list", "2", null, null, "/admin/student/view"),
+    getItem("Reserve list", "3", null, null, "/admin/reverve/view"),
   ]),
   getItem("Syllabus", "sub2", <FileSearchOutlined />, [
-    getItem("View syllabus", "4", null, null, "/syllabus/view"),
-    getItem("Create syllabus", "5", null, null, "/syllabus/create"),
+    getItem("View syllabus", "4", null, null, "/admin/syllabus/view"),
+    getItem("Create syllabus", "5", null, null, "/admin/syllabus/create"),
   ]),
 
   getItem("Training program", "sub3", <BookOutlined />, [
-    getItem("View program", "6", null, null, "/program/view"),
-    getItem("Create program", "7", null, null, "/program/create"),
+    getItem("View program", "6", null, null, "/admin/program/view"),
+    getItem("Create program", "7", null, null, "/admin/program/create"),
   ]),
   getItem("Class", "sub4", <BankOutlined />, [
-    getItem("View class", "8", null, null, "/class/view"),
+    getItem("View class", "8", null, null, "/admin/class/view"),
   ]),
-  getItem("Tranining calendar", "9", <CalendarOutlined />, "", "/calendar"),
+  getItem(
+    "Tranining calendar",
+    "9",
+    <CalendarOutlined />,
+    "",
+    "/admin/calendar"
+  ),
   getItem("User management", "sub5", <UsergroupAddOutlined />, [
-    getItem("User list", "10", null, null, "/user/view"),
-    getItem("User permission", "11", null, null, "/user/permission"),
+    getItem("User list", "10", null, null, "/admin/user/view"),
+    getItem("User permission", "11", null, null, "/admin/user/permission"),
   ]),
   getItem(
     "Learning materials",
     "12",
     <FileMarkdownOutlined />,
     null,
-    "/materials"
+    "/admin/materials"
   ),
 
   getItem("Setting", "sub6", <SettingOutlined />, [
-    getItem("Calendar", "13", null, null, "/calendar"),
-    getItem("Email configuration", "14", null, null, "/email"),
+    getItem("Calendar", "13", null, null, "/admin/calendar"),
+    getItem("Email configuration", "14", null, null, "/admin/email"),
   ]),
 ];
 
 const DashboardLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const { isAuthenticated, infoUser, logout } = useAuth();
-  const { t } = useTranslation("translation");
 
   const storeDefaultSelectedKeys = (keys) => {
     sessionStorage.setItem("keys", keys);
@@ -88,12 +88,10 @@ const DashboardLayout = ({ children }) => {
   const defaultSelectedKeys = resetDefaultSelectedKeys();
 
   const renderMenuItems = (items) => {
-    const { t } = useTranslation("translation");
-
     return items.map((item) => {
       if (item.children && item.children.length > 0) {
         return (
-          <Menu.SubMenu key={item.key} icon={item.icon} title={t(item.label)}>
+          <Menu.SubMenu key={item.key} icon={item.icon} title={item.label}>
             {renderMenuItems(item.children)}
           </Menu.SubMenu>
         );
@@ -104,7 +102,7 @@ const DashboardLayout = ({ children }) => {
             icon={item.icon}
             onClick={() => storeDefaultSelectedKeys([item.key])}
           >
-            <Link to={item.path}>{t(item.label)}</Link>
+            <Link to={item.path}>{item.label}</Link>
           </Menu.Item>
         );
       }
@@ -118,11 +116,22 @@ const DashboardLayout = ({ children }) => {
   const handleLogout = () => {
     logout();
     notification.success({
-      message: t("Logout Successful"),
-      description: t("You have successfully logged out."),
+      message: "Logout Successful",
+      description: "You have successfully logged out.",
       duration: 2,
     });
   };
+
+  const menu = (
+    <Menu>
+      <Menu.Item key="2">
+        <Link to="/">Shop</Link>
+      </Menu.Item>
+      <Menu.Item key="1" onClick={handleLogout}>
+        Logout
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <Layout className="min-h-screen">
@@ -154,33 +163,21 @@ const DashboardLayout = ({ children }) => {
         </Menu>
       </Sider>
       <Layout className="right-bar overflow-y-auto transition-all duration-[280ms] ease-in">
-        <div className="header pr-4 flex justify-end gap-2 items-center fixed z-[1000] h-16 shadow-none bg-[#f8f8f8] bg-opacity-80 backdrop-blur-[6px]">
-          <div className="flex space-x-2 bg-[#b5b5b5d4] px-3 py-2 mr-5 rounded-3xl text-[#fff]">
-            <img src={hatlogo} alt="" />
-            <span>uniGate</span>
-          </div>
-          {infoUser.roleName === "ROLE_ADMIN" ? (
-            <>
-              <img
-                className="w-[42px] h-[42px] rounded-full border object-cover"
-                src={avatarAdmin}
-              />
-            </>
-          ) : infoUser.roleName === "ROLE_TRAINER" ? (
-            <img
-              src={avatarTrainer}
-              alt=""
-              className="w-[42px] h-[42px] rounded-full border object-cover"
-            />
-          ) : null}
+        <div className="header-admin pr-4 flex justify-end gap-2 items-center fixed z-[1000] h-16 shadow-none bg-[#f8f8f8] bg-opacity-80 backdrop-blur-[6px]">
+          <img
+            src={meme}
+            alt=""
+            className="w-[42px] h-[42px] rounded-full border object-cover"
+          />
           <div className="flex flex-col">
-            {isAuthenticated ? <strong>{infoUser.fullName}</strong> : ""}
-            <div
-              className="text-[#5099ff] font-bold hover:underline cursor-pointer"
-              onClick={handleLogout}
-            >
-              {t("Logout")}
-            </div>
+            <Dropdown overlay={menu} trigger={["click"]}>
+              <a
+                className="ant-dropdown-link"
+                onClick={(e) => e.preventDefault()}
+              >
+                Admin
+              </a>
+            </Dropdown>
           </div>
         </div>
         <Content className="mt-[80px] mx-4 ">
@@ -189,9 +186,9 @@ const DashboardLayout = ({ children }) => {
           </div>
         </Content>
         <Footer className="text-center">
-          Copyright @2022 BA Warrior. All right reserved
+          Gia sư online © {new Date().getFullYear()} Công ty TNHH nhóm 5 thành
+          viên
         </Footer>
-        <FloatButtonClick />
       </Layout>
     </Layout>
   );
