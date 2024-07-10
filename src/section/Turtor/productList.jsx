@@ -1,5 +1,7 @@
 import React from "react";
 import { Card, Input, Rate, Select } from "antd";
+import { ShoppingCartOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 const { Search } = Input;
@@ -54,33 +56,41 @@ function ProductList() {
         </div>
       </div>
       <div className="mt-6">
-          <Card
-            hoverable
-            className="max-w-[20rem] shadow-md overflow-hidden"
-            cover={
-              <img
-                alt="Profile"
-                src="https://giasuonline.vn/wp-content/uploads/2023/12/z4669388861927_c873c924ea0f4f5c939557664bb5dcb9-300x300.jpg"
-                className="w-full h-64 object-cover"
-              />
-            }
-          >
+        <Card
+          className="max-w-[20rem] overflow-hidden relative group"
+          cover={
+            <div className="relative">
+              <Link to="/product-detail">
+                <img
+                  alt="Profile"
+                  src="https://giasuonline.vn/wp-content/uploads/2023/12/z4669388861927_c873c924ea0f4f5c939557664bb5dcb9-300x300.jpg"
+                  className="w-full h-64 object-cover"
+                />
+              </Link>
+              <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <ShoppingCartOutlined className="text-black text-xl bg-gray-400 hover:bg-white bg-opacity-50 rounded-full p-1" />
+              </div>
+            </div>
+          }
+        >
+          <Link to="/product-detail">
             <Meta
-              title={<p className="text-sm text-gray-400 ">Tiếng Trung</p>}
+              title={<p className="text-sm text-gray-400">Tiếng Trung</p>}
               description={
                 <h2 className="text-base font-medium text-black">
-                  <strong>Lớp dạy kèm tiêng trung </strong>
+                  <strong>Lớp dạy kèm tiêng trung</strong>
                 </h2>
               }
             />
-            <div className="mt-2 mb-4">
-              <Rate disabled defaultValue={5} className="text-yellow-500" />
-            </div>
-            <div className="flex">
-              <div className="text-base">150,000.00 ₫</div>
-            </div>
-          </Card>
-        </div>
+          </Link>
+          <div className="mt-2 mb-4">
+            <Rate disabled defaultValue={5} className="text-yellow-500" />
+          </div>
+          <div className="flex">
+            <div className="text-base">150,000.00 ₫</div>
+          </div>
+        </Card>
+      </div>
     </div>
   );
 }
