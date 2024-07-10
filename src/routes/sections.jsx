@@ -4,10 +4,12 @@ import { Error404, Loading, ScrollToTop, AdminError } from "../components";
 import App from "../layout/index";
 import DashboardLayout from "../layout/admin";
 import TutorSearchPage from "../page/TutorSearchPage";
+import ProductDetail from "../section/Turtor/productDetail";
 
 export const HomePage = lazy(() => import("../page/HomePage"));
 export const ContactPage = lazy(() => import("../page/ContactPage"));
 export const AccountPage = lazy(() => import("../page/AccountPage"));
+export const DetailTutorPage = lazy(() => import("../page/DetailTutorPage"));
 export const TurtorInfoPage = lazy(() => import("../page/TurtorInfoPage"));
 export const Router = () => {
   const routes = useRoutes([
@@ -44,6 +46,14 @@ export const Router = () => {
           element: <TurtorInfoPage />,
         },
         {
+          path: "/view-detail-tutor",
+          element: <DetailTutorPage />,
+        },
+        {
+          path: "/product-detail",
+          element: <ProductDetail />,
+        },
+        {
           path: "*",
           element: <Error404 />,
         },
@@ -53,14 +63,14 @@ export const Router = () => {
       path: "/admin",
       element: (
         <DashboardLayout>
-        <ScrollToTop>
-          <Suspense fallback={<Loading />}>
-            <Outlet />
-          </Suspense>
-        </ScrollToTop>
-      </DashboardLayout>
+          <ScrollToTop>
+            <Suspense fallback={<Loading />}>
+              <Outlet />
+            </Suspense>
+          </ScrollToTop>
+        </DashboardLayout>
       ),
-      children:[
+      children: [
         {
           path: "*",
           element: <AdminError />,
