@@ -20,7 +20,7 @@ const ViewDetailTutor = () => {
                 <a href="/">Trang chủ</a>
               </Breadcrumb.Item>
               <Breadcrumb.Item>
-                <a href="/">Môn học</a>
+                <a href="/mon-hoc">Môn học</a>
               </Breadcrumb.Item>
               <Breadcrumb.Item>
                 <a href="/">Tiếng Anh </a>
@@ -105,11 +105,15 @@ const ViewDetailTutor = () => {
                 buộc được đánh dấu *
               </p>
               <div>
-                <label className="text-lg font-medium">Đánh giá của bạn *</label>
+                <label className="text-lg font-medium">
+                  Đánh giá của bạn *
+                </label>
                 <Rate />
               </div>
               <div>
-                <label className="text-lg font-medium">Nhận xét của bạn *</label>
+                <label className="text-lg font-medium">
+                  Nhận xét của bạn *
+                </label>
                 <textarea className="w-full h-20 p-2 border border-gray-300 rounded-md" />
               </div>
               <div className="flex mt-2">
@@ -141,7 +145,7 @@ const ViewDetailTutor = () => {
               </h2>
               <ul className="list-disc ml-4 mt-2">
                 <li className="text-xl ">
-                  <span >Store Name:</span> Ha Nguyen
+                  <span>Store Name:</span> Ha Nguyen
                 </li>
                 <li className="text-xl">
                   <span className="font-medium">Vendor:</span>{" "}
@@ -150,8 +154,7 @@ const ViewDetailTutor = () => {
                   </a>
                 </li>
                 <li className="text-xl">
-                  <span >Address:</span> K266 Hoang Dieu,
-                  Danang 550000
+                  <span>Address:</span> K266 Hoang Dieu, Danang 550000
                 </li>
                 <li className="text-xl">No ratings found yet!</li>
               </ul>

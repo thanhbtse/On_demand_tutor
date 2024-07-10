@@ -5,12 +5,15 @@ import App from "../layout/index";
 import DashboardLayout from "../layout/admin";
 import TutorSearchPage from "../page/TutorSearchPage";
 import ProductDetail from "../section/Turtor/productDetail";
+import SubjectProduct from "../section/Subject/SubjectProduct";
+import SubjectDetail from "../section/Subject/SubjectDetail";
 
 export const HomePage = lazy(() => import("../page/HomePage"));
 export const ContactPage = lazy(() => import("../page/ContactPage"));
 export const AccountPage = lazy(() => import("../page/AccountPage"));
 export const DetailTutorPage = lazy(() => import("../page/DetailTutorPage"));
 export const TurtorInfoPage = lazy(() => import("../page/TurtorInfoPage"));
+export const SubjectPage = lazy(() => import("../page/SubjectPage"));
 export const Router = () => {
   const routes = useRoutes([
     {
@@ -52,6 +55,18 @@ export const Router = () => {
         {
           path: "/product-detail",
           element: <ProductDetail />,
+        },
+        {
+          path: "/mon-hoc",
+          element: <SubjectPage />,
+        },
+        {
+          path: "/mon-hoc/:id",
+          element: <SubjectProduct />,
+        },
+        {
+          path: "/mon-hoc/:id/ky-nang",
+          element: <SubjectDetail />,
         },
         {
           path: "*",
