@@ -1,5 +1,5 @@
 import React from "react";
-import { Tabs, Rate, Image, Breadcrumb } from "antd";
+import { Tabs, Rate, Image, Breadcrumb, Avatar } from "antd";
 const { TabPane } = Tabs;
 
 const ProductDetail = () => {
@@ -42,27 +42,31 @@ const ProductDetail = () => {
                 từ lớp 1 đến người đã đi làm.
               </p>
             </div>
-
-            <div className="mt-4 text-[#36174d] flex ml-1">
-              <span>Danh mục: </span>
-              &nbsp;
-              <span className="text-[#ff4778]">Tiếng Trung</span>
-            </div>
-            <div className="flex items-center mt-4 ml-1">
-              <img
-                src="https://giasuonline.vn/wp-content/uploads/2023/12/z4669388861927_c873c924ea0f4f5c939557664bb5dcb9.jpg"
-                alt="Tutor Avatar"
-                className="w-10 h-10 rounded-full"
-              />
-              <div className="ml-2 text-[#36174d] space-x-4">
-                <span>Nguyễn Thị Diễm</span>
-                <span><Rate disabled defaultValue={4} /></span>
+            <div className="border-t-2 mt-4">
+              <div className="mt-4 text-[#36174d] flex ml-1">
+                <span>Danh mục: </span>
+                &nbsp;
+                <span className="text-[#ff4778]">Tiếng Trung</span>
+              </div>
+              <div className="flex items-center mt-4 ml-1 p-4 border-2">
+                <Avatar
+                  src="https://giasuonline.vn/wp-content/uploads/2023/12/z4669388861927_c873c924ea0f4f5c939557664bb5dcb9.jpg"
+                  alt="Tutor Avatar"
+                  size={50}
+                  className="w-10 h-10"
+                />
+                <div className="ml-2 text-[#36174d] flex flex-col space-y-2">
+                  <span>Nguyễn Thị Diễm</span>
+                  <span>
+                    <Rate disabled defaultValue={4} />
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <Tabs defaultActiveKey="1" className="mt-8">
+        <Tabs defaultActiveKey="1" className="mt-8 border-t-2">
           <TabPane tab="Mô tả" key="1">
             <div className="space-y-2">
               <p>
