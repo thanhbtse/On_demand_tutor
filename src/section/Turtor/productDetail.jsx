@@ -54,9 +54,9 @@ const ProductDetail = () => {
                 alt="Tutor Avatar"
                 className="w-10 h-10 rounded-full"
               />
-              <div className="ml-2 text-[#36174d]">
+              <div className="ml-2 text-[#36174d] space-x-4">
                 <span>Nguyễn Thị Diễm</span>
-                <Rate disabled defaultValue={4} />
+                <span><Rate disabled defaultValue={4} /></span>
               </div>
             </div>
           </div>
