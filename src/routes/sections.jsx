@@ -7,7 +7,9 @@ import TutorSearchPage from "../page/TutorSearchPage";
 import ProductDetail from "../section/Turtor/productDetail";
 import SubjectProduct from "../section/Subject/SubjectProduct";
 import SubjectDetail from "../section/Subject/SubjectDetail";
-
+import TurtorDashboardLayout from "../layout/turtordashboard";
+import TurTorError from "../components/TurtorError";
+//User Page
 export const HomePage = lazy(() => import("../page/HomePage"));
 export const ContactPage = lazy(() => import("../page/ContactPage"));
 export const AccountPage = lazy(() => import("../page/AccountPage"));
@@ -16,6 +18,10 @@ export const TurtorInfoPage = lazy(() => import("../page/TurtorInfoPage"));
 export const SubjectPage = lazy(() => import("../page/SubjectPage"));
 export const CartPage = lazy(() => import("../page/CartPage"));
 export const ProfilePage = lazy(() => import("../page/ProfilePage"));
+export const GioiThieuPage = lazy(() => import("../page/GioiThieuPage"));
+
+//Admin Page
+export const TurtorTablePage = lazy(() => import("../page/admin/turtorTable"));
 export const Router = () => {
   const routes = useRoutes([
     {
@@ -77,6 +83,8 @@ export const Router = () => {
         {
           path: "/ho-so",
           element: <ProfilePage />,
+          path: "/gioi-thieu",
+          element: <GioiThieuPage />,
         },
         {
           path: "*",
@@ -99,6 +107,28 @@ export const Router = () => {
         {
           path: "*",
           element: <AdminError />,
+        },
+        {
+          path: "/admin/turtor/view",
+          element: <TurtorTablePage />,
+        },
+      ],
+    },
+    {
+      path: "/turtor",
+      element: (
+        <TurtorDashboardLayout>
+          <ScrollToTop>
+            <Suspense fallback={<Loading />}>
+              <Outlet />
+            </Suspense>
+          </ScrollToTop>
+        </TurtorDashboardLayout>
+      ),
+      children: [
+        {
+          path: "*",
+          element: <TurTorError />,
         },
       ],
     },
