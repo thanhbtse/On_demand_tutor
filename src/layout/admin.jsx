@@ -8,12 +8,11 @@ import {
   SettingOutlined,
   UsergroupAddOutlined,
   HomeOutlined,
-  CalendarOutlined,
-  FileMarkdownOutlined,
   BankOutlined,
   BookOutlined,
   FileSearchOutlined,
   UserAddOutlined,
+  ShoppingOutlined,
 } from "@ant-design/icons";
 import meme from "../assets/images/images.jpg";
 import hatlogo from "../assets/logo/187390886-black-graduate-hat-with-golden-element-on-white-background-flat-design-illustration-vector-graphics.jpg";
@@ -32,44 +31,24 @@ function getItem(label, key, icon, children, path) {
 
 const items = [
   getItem("Home", "1", <HomeOutlined />, null, "/admin/dashboard"),
-  getItem("Student", "sub1", <UserAddOutlined />, [
-    getItem("Student list", "2", null, null, "/admin/student/view"),
-    getItem("Reserve list", "3", null, null, "/admin/reverve/view"),
-  ]),
-  getItem("Syllabus", "sub2", <FileSearchOutlined />, [
-    getItem("View syllabus", "4", null, null, "/admin/syllabus/view"),
-    getItem("Create syllabus", "5", null, null, "/admin/syllabus/create"),
+  getItem("Turtor", "sub1", <UserAddOutlined />, [
+    getItem("Turtor list", "2", null, null, "/admin/turtor/view"),
   ]),
 
-  getItem("Training program", "sub3", <BookOutlined />, [
-    getItem("View program", "6", null, null, "/admin/program/view"),
-    getItem("Create program", "7", null, null, "/admin/program/create"),
+  getItem("Training program", "sub2", <BookOutlined />, [
+    getItem("View program", "3", null, null, "/admin/program/view"),
   ]),
-  getItem("Class", "sub4", <BankOutlined />, [
-    getItem("View class", "8", null, null, "/admin/class/view"),
+  getItem("Class", "sub3", <BankOutlined />, [
+    getItem("View class", "4", null, null, "/admin/class/view"),
   ]),
-  getItem(
-    "Tranining calendar",
-    "9",
-    <CalendarOutlined />,
-    "",
-    "/admin/calendar"
-  ),
-  getItem("User management", "sub5", <UsergroupAddOutlined />, [
-    getItem("User list", "10", null, null, "/admin/user/view"),
-    getItem("User permission", "11", null, null, "/admin/user/permission"),
+  getItem("Order management", "5", <ShoppingOutlined />, "", "/admin/calendar"),
+  getItem("User management", "sub4", <UsergroupAddOutlined />, [
+    getItem("User list", "6", null, null, "/admin/user/view"),
   ]),
-  getItem(
-    "Learning materials",
-    "12",
-    <FileMarkdownOutlined />,
-    null,
-    "/admin/materials"
-  ),
 
-  getItem("Setting", "sub6", <SettingOutlined />, [
-    getItem("Calendar", "13", null, null, "/admin/calendar"),
-    getItem("Email configuration", "14", null, null, "/admin/email"),
+  getItem("Setting", "sub5", <SettingOutlined />, [
+    getItem("Calendar", "7", null, null, "/admin/calendar"),
+    getItem("Email configuration", "8", null, null, "/admin/email"),
   ]),
 ];
 
