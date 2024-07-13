@@ -6,14 +6,10 @@ import PropTypes from "prop-types";
 import { Layout, Menu, notification, Dropdown } from "antd";
 import {
   SettingOutlined,
-  UsergroupAddOutlined,
   HomeOutlined,
-  BankOutlined,
   BookOutlined,
-  FileSearchOutlined,
-  UserAddOutlined,
-  ShoppingOutlined,
   CreditCardOutlined,
+  MessageOutlined,
 } from "@ant-design/icons";
 import meme from "../assets/images/images.jpg";
 import hatlogo from "../assets/logo/187390886-black-graduate-hat-with-golden-element-on-white-background-flat-design-illustration-vector-graphics.jpg";
@@ -31,25 +27,22 @@ function getItem(label, key, icon, children, path) {
 }
 
 const items = [
-  getItem("Home", "1", <HomeOutlined />, null, "/admin/dashboard"),
-  getItem("Turtor", "sub1", <UserAddOutlined />, [
-    getItem("Turtor list", "2", null, null, "/admin/turtor/view"),
+  getItem("Home", "1", <HomeOutlined />, null, "/turtor/dashboard"),
+  getItem("Training program", "sub1", <BookOutlined />, [
+    getItem("My Course", "2", null, null, "/turtor/program/view"),
+    getItem("Create New Course", "3", null, null, "/turtor/program/create"),
   ]),
-  getItem("Course", "sub3", <BankOutlined />, [
-    getItem("View Course", "4", null, null, "/admin/class/view"),
+  getItem("Earning", "sub2", <CreditCardOutlined />, [
+    getItem("My Earning", "4", null, null, "/turtor/earning/view"),
   ]),
-  getItem("Order management", "5", <ShoppingOutlined />, "", "/admin/calendar"),
-  getItem("User management", "sub4", <UsergroupAddOutlined />, [
-    getItem("User list", "6", null, null, "/admin/user/view"),
-  ]),
-
-  getItem("Setting", "sub5", <SettingOutlined />, [
-    getItem("Calendar", "7", null, null, "/admin/calendar"),
-    getItem("Email configuration", "8", null, null, "/admin/email"),
+  getItem("Message", "5", <MessageOutlined />, "", "/turtor/message"),
+  getItem("Setting", "sub3", <SettingOutlined />, [
+    getItem("Calendar", "6", null, null, "/turtor/calendar"),
+    getItem("Email configuration", "7", null, null, "/turtor/email"),
   ]),
 ];
 
-const DashboardLayout = ({ children }) => {
+const TurtorDashboardLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
 
   const storeDefaultSelectedKeys = (keys) => {
@@ -85,7 +78,7 @@ const DashboardLayout = ({ children }) => {
     });
   };
 
-  DashboardLayout.propTypes = {
+  TurtorDashboardLayout.propTypes = {
     children: PropTypes.node.isRequired,
   };
 
@@ -169,4 +162,4 @@ const DashboardLayout = ({ children }) => {
     </Layout>
   );
 };
-export default DashboardLayout;
+export default TurtorDashboardLayout;
