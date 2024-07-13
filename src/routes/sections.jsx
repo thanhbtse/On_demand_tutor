@@ -83,6 +83,8 @@ export const Router = () => {
         {
           path: "/ho-so",
           element: <ProfilePage />,
+        },
+        {
           path: "/gioi-thieu",
           element: <GioiThieuPage />,
         },
