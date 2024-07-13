@@ -10,7 +10,7 @@ const AdminError = () => {
       subTitle="xin lỗi, trang bạn truy cập không tồn tại."
       extra={
         <Button type="primary" className="bg-[#ff4778] text-white">
-          <Link to="/admin">Quay Trở lại trang chủ</Link>
+          <Link to="/admin/dashboard">Quay Trở lại trang chủ</Link>
         </Button>
       }
     />

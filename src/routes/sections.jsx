@@ -14,6 +14,7 @@ export const AccountPage = lazy(() => import("../page/AccountPage"));
 export const DetailTutorPage = lazy(() => import("../page/DetailTutorPage"));
 export const TurtorInfoPage = lazy(() => import("../page/TurtorInfoPage"));
 export const SubjectPage = lazy(() => import("../page/SubjectPage"));
+export const GioiThieuPage = lazy(() => import("../page/GioiThieuPage"));
 export const Router = () => {
   const routes = useRoutes([
     {
@@ -67,6 +68,10 @@ export const Router = () => {
         {
           path: "/mon-hoc/:id/ky-nang",
           element: <SubjectDetail />,
+        },
+        {
+          path: "/gioi-thieu",
+          element: <GioiThieuPage />,
         },
         {
           path: "*",
