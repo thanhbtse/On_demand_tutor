@@ -1,5 +1,15 @@
 import React, { Children } from "react";
-import { Flex, Layout, Input, theme, Row, Col, Button, Divider } from "antd";
+import {
+  Flex,
+  Layout,
+  Input,
+  theme,
+  Row,
+  Col,
+  Button,
+  Divider,
+  Avatar,
+} from "antd";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import facebooklogo from "../assets/logo/icons8-facebook-48.png";
@@ -45,9 +55,19 @@ const App = ({ children }) => {
             </span>
           </div>
         </div>
-        <Button className="mr-36 bg-[#ff4778] text-white font-bold text-[1rem] px-5 py-3 h-9 flex items-center justify-center rounded-sm	border-transparent">
-          <Link to="/tim-gia-su-online">Tìm Gia Sư</Link>
-        </Button>
+        <div className="flex">
+          <div>
+            <Button className="mr-20 bg-[#ff4778] text-white font-bold text-[1rem] px-5  h-9 flex items-center justify-center rounded-sm	border-transparent my-4">
+              <Link to="/tim-gia-su-online">Tìm Gia Sư</Link>
+            </Button>
+          </div>
+          <Link to="/ho-so">
+            <Avatar
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7rHb3Lmhnhau0CLSdDWBu3f4RKAiXHEV7hQ&s"
+              size="large"
+            />
+          </Link>
+        </div>
       </Header>
       <Header className="bg-[#eee]">
         <div className="flex justify-center items-center h-full space-x-2">
@@ -89,9 +109,7 @@ const App = ({ children }) => {
         </div>
         <Footer className="bottom-20 bg-[#eee]">
           <div className="ml-3 md:ml-24 mr-2 md:mr-auto">
-            <Row
-              gutter={[48, 16]}
-            >
+            <Row gutter={[48, 16]}>
               <Col span={7}>
                 <div className="flex flex-col space-y-2 md:space-y-6 lg:space-y-4 xl:space-y-6 2xl:space-y-8 font-mono">
                   <span className="font-bold text-[18px]">GIASUONLINE.VN</span>

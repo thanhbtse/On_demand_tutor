@@ -14,6 +14,8 @@ export const AccountPage = lazy(() => import("../page/AccountPage"));
 export const DetailTutorPage = lazy(() => import("../page/DetailTutorPage"));
 export const TurtorInfoPage = lazy(() => import("../page/TurtorInfoPage"));
 export const SubjectPage = lazy(() => import("../page/SubjectPage"));
+export const CartPage = lazy(() => import("../page/CartPage"));
+export const ProfilePage = lazy(() => import("../page/ProfilePage"));
 export const Router = () => {
   const routes = useRoutes([
     {
@@ -67,6 +69,14 @@ export const Router = () => {
         {
           path: "/mon-hoc/:id/ky-nang",
           element: <SubjectDetail />,
+        },
+        {
+          path: "/gio-hang",
+          element: <CartPage />,
+        },
+        {
+          path: "/ho-so",
+          element: <ProfilePage />,
         },
         {
           path: "*",

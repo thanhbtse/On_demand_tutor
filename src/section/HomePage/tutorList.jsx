@@ -1,5 +1,5 @@
-import { FilterOutlined, RightOutlined } from "@ant-design/icons";
-import { Avatar, Button, Card, Col, Input, Row, Select, Skeleton } from "antd";
+import { FilterOutlined, RightOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { Avatar, Button, Card, Col, Input, Rate, Row, Select, Skeleton } from "antd";
 import React, { useState } from "react";
 import "../../App.css";
 import Meta from "antd/es/card/Meta";
@@ -7,6 +7,18 @@ import background from "../../assets/images/default-store-banner.png";
 import meme from "../../assets/images/images.jpg";
 import { Link } from "react-router-dom";
 
+const tutors = [
+  {
+    id: 1,
+    title: "Cho Trẻ Em",
+    description: "Gia sư dạy kèm tiếng anh cho trẻ em",
+    image:
+      "https://giasuonline.vn/wp-content/uploads/2023/09/384821589_339766908712324_8739744638444568107_n-300x300.jpg",
+    price: "150,000.00 ₫",
+    oldPrice: "200,000.00 ₫",
+    rating: 5,
+  },
+];
 function ListTutor() {
   const [loading, setLoading] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
@@ -72,37 +84,51 @@ function ListTutor() {
           </div>
         </div>
       )}
-      {/* card list */}
-      <div class="card-list">
-        <Row gutter={[48, 16]}>
-          <Col span={8}>
+      <div className="flex space-x-3">
+        {tutors.map((tutor) => (
+          <Link to="/view-detail-tutor" key={tutor.id}>
             <Card
-              className="w-80 shadow-md rounded-none "
-              cover={<img alt="example" src={background} />}
-              actions={[
-                <Link to={`/gia-su/`}>
-                  <Button
-                    className=" bg-[#ff4778] text-white mr-56"
-                    shape="circle"
-                    size="large"
-                  >
-                    <RightOutlined className="flex align-middle" />
-                  </Button>
-                </Link>,
-              ]}
+              hoverable
+              className="max-w-[22rem] shadow-md rounded-lg overflow-hidden"
+              cover={
+                <div className="relative group">
+                  <img
+                    alt="Profile"
+                    src={tutor.image}
+                    className="w-full h-64 object-cover"
+                  />
+                  <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Link to="/gio-hang">
+                      <ShoppingCartOutlined className="text-black text-xl bg-gray-400 hover:bg-white bg-opacity-50 rounded-full p-1" />
+                    </Link>
+                  </div>{" "}
+                </div>
+              }
             >
-              <Skeleton loading={loading} avatar active>
-                <Meta
-                  avatar={
-                    <Avatar src={meme} size="large" className="border-4" />
-                  }
-                  title="Card title"
-                  description="This is the description"
+              <Meta
+                title={<p className="text-sm text-gray-400 ">{tutor.title}</p>}
+                description={
+                  <h2 className="text-lg font-medium text-black">
+                    <strong>{tutor.description}</strong>
+                  </h2>
+                }
+              />
+              <div className="mt-2 mb-4">
+                <Rate
+                  disabled
+                  defaultValue={tutor.rating}
+                  className="text-yellow-500"
                 />
-              </Skeleton>
+              </div>
+              <div className="flex">
+                <div className="text-lg text-gray-600 line-through">
+                  {tutor.oldPrice}
+                </div>
+                <div className="text-lg font-bold ">{tutor.price}</div>
+              </div>
             </Card>
-          </Col>
-        </Row>
+          </Link>
+        ))}
       </div>
     </div>
   );

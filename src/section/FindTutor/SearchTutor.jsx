@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-  Breadcrumb,
-  Button,
-  Col,
-  Row,
-  Select,
-  Card,
-  Rate,
-} from "antd";
+import { Breadcrumb, Button, Col, Row, Select, Card, Rate } from "antd";
 import { Link } from "react-router-dom";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 const { Meta } = Card;
 
 const tutors = [
@@ -149,11 +142,18 @@ function SearchTutor() {
               hoverable
               className="max-w-[22rem] shadow-md rounded-lg overflow-hidden"
               cover={
-                <img
-                  alt="Profile"
-                  src={tutor.image}
-                  className="w-full h-64 object-cover"
-                />
+                <div className="relative group">
+                  <img
+                    alt="Profile"
+                    src={tutor.image}
+                    className="w-full h-64 object-cover"
+                  />
+                  <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Link to="/gio-hang">
+                      <ShoppingCartOutlined className="text-black text-xl bg-gray-400 hover:bg-white bg-opacity-50 rounded-full p-1" />
+                    </Link>
+                  </div>{" "}
+                </div>
               }
             >
               <Meta

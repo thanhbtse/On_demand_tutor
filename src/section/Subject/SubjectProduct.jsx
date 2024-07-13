@@ -51,7 +51,7 @@ function SubjectProduct() {
                   <img
                     alt="Profile"
                     src={tutor.image}
-                    className="w-full h-64 object-cover"
+                    className="w-full h-[22rem] object-cover"
                   />
                 }
               >
