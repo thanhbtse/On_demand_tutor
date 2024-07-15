@@ -1,26 +1,80 @@
-import React from "react";
-import { Form, Input, Button, Checkbox, Radio } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Button, Checkbox, Radio, notification } from "antd";
 import "tailwindcss/tailwind.css";
+import { login, register } from "../../api/authen.js";
+import useAuth from "../../hooks/useAuth.js";
+import Cookies from "js-cookie";
 
 const LoginForm = () => {
+  const [values, setValues] = useState({});
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const handleSignin = async (formValues) => {
+    if (isLoggingIn) {
+      return;
+    }
+    try {
+      setIsLoggingIn(true);
+      const { email, password } = formValues;
+      const res = await login(email, password);
+      console.log(">>> res", res);
+      if (res && res.status === 200 && res.data.token) {
+        notification.success({
+          message: "Login Successful",
+          description: "You have successfully logged in.",
+          duration: 1,
+        });
+        const jwtToken = res.data.token
+        Cookies.set("token", jwtToken, { expires: 7 });
+        if (rememberMe) {
+          Cookies.set("email");
+          Cookies.set("password");
+        }
+        const authStore = useAuth.getState();
+        authStore.login();
+      }
+    } catch (err) {
+      notification.error({
+        message: "Login Failed",
+        description: "Username or password is invalid. Please try again.",
+        duration: 1,
+      });
+      console.error(">>> Error signing server", err);
+      setIsLoggingIn(false);
+    }
+  };
+
+  const onFinish = (values) => {
+    setValues(values);
+    if (values.email && values.password) {
+      handleSignin(values);
+    }
+  };
+
   return (
-    <Form className="space-y-6">
+    <Form className="space-y-6" onFinish={onFinish}>
       <Form.Item
-        name="username"
+        name="email"
         rules={[
           { required: true, message: "Please input your username or email!" },
         ]}
+        initialValue={email}
       >
         <Input placeholder="Tên tài khoản hoặc địa chỉ email *" />
       </Form.Item>
       <Form.Item
         name="password"
         rules={[{ required: true, message: "Please input your password!" }]}
+        initialValue={password}
       >
         <Input.Password placeholder="Mật khẩu *" />
       </Form.Item>
       <Form.Item name="remember" valuePropName="checked">
-        <Checkbox>Ghi nhớ mật khẩu</Checkbox>
+        <Checkbox onChange={(e) => setRememberMe(e.target.checked)}>
+          Ghi nhớ mật khẩu
+        </Checkbox>
       </Form.Item>
       <Form.Item>
         <Button
