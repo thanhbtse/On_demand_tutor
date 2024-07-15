@@ -27,18 +27,14 @@ function getItem(label, key, icon, children, path) {
 }
 
 const items = [
-  getItem("Home", "1", <HomeOutlined />, null, "/turtor/dashboard"),
+  getItem("Dashboard", "1", <HomeOutlined />, null, "/turtor/dashboard"),
   getItem("Training program", "sub1", <BookOutlined />, [
     getItem("My Course", "2", null, null, "/turtor/program/view"),
     getItem("Create New Course", "3", null, null, "/turtor/program/create"),
   ]),
-  getItem("Earning", "sub2", <CreditCardOutlined />, [
-    getItem("My Earning", "4", null, null, "/turtor/earning/view"),
-  ]),
-  getItem("Message", "5", <MessageOutlined />, "", "/turtor/message"),
-  getItem("Setting", "sub3", <SettingOutlined />, [
-    getItem("Calendar", "6", null, null, "/turtor/calendar"),
-    getItem("Email configuration", "7", null, null, "/turtor/email"),
+  getItem("Message", "4", <MessageOutlined />, "", "/turtor/message"),
+  getItem("Setting", "sub2", <SettingOutlined />, [
+    getItem("Account", "5", null, null, "/turtor/account"),
   ]),
 ];
 
@@ -132,7 +128,7 @@ const TurtorDashboardLayout = ({ children }) => {
         </Menu>
       </Sider>
       <Layout className="right-bar overflow-y-auto transition-all duration-[280ms] ease-in">
-        <div className="header-admin pr-4 flex justify-end gap-2 items-center fixed z-[1000] h-16 shadow-none bg-[#f8f8f8] bg-opacity-80 backdrop-blur-[6px]">
+        <div className="header-admin pr-4 flex justify-end gap-2 items-center fixed z-[1000] h-20 shadow-none bg-[#ffff] bg-opacity-80 backdrop-blur-[6px]">
           <img
             src={meme}
             alt=""
@@ -149,8 +145,8 @@ const TurtorDashboardLayout = ({ children }) => {
             </Dropdown>
           </div>
         </div>
-        <Content className="mt-[80px] mx-4 ">
-          <div className="rounded-xl overflow-x-auto min-w-[250px] bg-[#fff]">
+        <Content className="mt-24 mx-4 ">
+          <div className="rounded-xl overflow-x-auto min-w-[250px] bg-[#f5f5f5]">
             {children}
           </div>
         </Content>

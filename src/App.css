@@ -177,3 +177,7 @@
 .ant-btn-circle {
   border: none;
 }
+.img-container {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}

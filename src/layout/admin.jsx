@@ -38,14 +38,11 @@ const items = [
   getItem("Course", "sub3", <BankOutlined />, [
     getItem("View Course", "4", null, null, "/admin/class/view"),
   ]),
-  getItem("Order management", "5", <ShoppingOutlined />, "", "/admin/calendar"),
+  getItem("Report management", "5", <ShoppingOutlined />, [
+    getItem("Report list", "5", null, null, "/admin/report/view"),
+  ]),
   getItem("User management", "sub4", <UsergroupAddOutlined />, [
     getItem("User list", "6", null, null, "/admin/user/view"),
-  ]),
-
-  getItem("Setting", "sub5", <SettingOutlined />, [
-    getItem("Calendar", "7", null, null, "/admin/calendar"),
-    getItem("Email configuration", "8", null, null, "/admin/email"),
   ]),
 ];
 

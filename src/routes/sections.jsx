@@ -9,6 +9,7 @@ import SubjectProduct from "../section/Subject/SubjectProduct";
 import SubjectDetail from "../section/Subject/SubjectDetail";
 import TurtorDashboardLayout from "../layout/turtordashboard";
 import TurTorError from "../components/TurtorError";
+
 //User Page
 export const HomePage = lazy(() => import("../page/HomePage"));
 export const ContactPage = lazy(() => import("../page/ContactPage"));
@@ -22,6 +23,11 @@ export const GioiThieuPage = lazy(() => import("../page/GioiThieuPage"));
 
 //Admin Page
 export const TurtorTablePage = lazy(() => import("../page/admin/turtorTable"));
+export const ReportView = lazy(() => import("../page/admin/ReportTable"));
+
+//Turtor Page
+export const TurtorCourse = lazy(() => import("../page/turtor/TurtorCourse"));
+export const MessagePage = lazy(() => import("../page/turtor/MessagePage"));
 export const Router = () => {
   const routes = useRoutes([
     {
@@ -114,6 +120,10 @@ export const Router = () => {
           path: "/admin/turtor/view",
           element: <TurtorTablePage />,
         },
+        {
+          path: "/admin/report/view",
+          element: <ReportView />,
+        }
       ],
     },
     {
@@ -128,6 +138,14 @@ export const Router = () => {
         </TurtorDashboardLayout>
       ),
       children: [
+        {
+          path: "/turtor/program/view",
+          element: <TurtorCourse />,
+        },
+        {
+          path: "/turtor/message",
+          element: <MessagePage />,
+        },
         {
           path: "*",
           element: <TurTorError />,
