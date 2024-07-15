@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Checkbox, Radio, notification } from "antd";
 import "tailwindcss/tailwind.css";
-import { login, register } from "../../api/authen.js";
+import { register } from "../../api/authen.js";
 import useAuth from "../../hooks/useAuth.js";
 import Cookies from "js-cookie";
-
+import { useNavigate } from "react-router-dom";
 const LoginForm = () => {
+  const { login, infoUser } = useAuth();
   const [values, setValues] = useState({});
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+
   const handleSignin = async (formValues) => {
     if (isLoggingIn) {
       return;
@@ -26,7 +29,7 @@ const LoginForm = () => {
           description: "You have successfully logged in.",
           duration: 1,
         });
-        const jwtToken = res.data.token
+        const jwtToken = res.data.token;
         Cookies.set("token", jwtToken, { expires: 7 });
         if (rememberMe) {
           Cookies.set("email");
@@ -34,6 +37,7 @@ const LoginForm = () => {
         }
         const authStore = useAuth.getState();
         authStore.login();
+        navigate("/"); 
       }
     } catch (err) {
       notification.error({
@@ -45,6 +49,7 @@ const LoginForm = () => {
       setIsLoggingIn(false);
     }
   };
+  console.log(">>> infoUser", infoUser);
 
   const onFinish = (values) => {
     setValues(values);
@@ -93,8 +98,32 @@ const LoginForm = () => {
 };
 
 const RegisterForm = () => {
+
+  const onFinish = async (values) => {
+    const { name, email, password, role } = values;
+    console.log("check dât", values);
+    try {
+      await register(name, email, password, role);
+      notification.success({
+        message: "Registration Successful",
+        description: "You have successfully registered.",
+      });
+    } catch (error) {
+      console.log(":>> error", error);
+      notification.error({
+        message: "Registration Failed",
+        description: "An error occurred during registration.",
+      });
+    }
+  };
   return (
-    <Form className="space-y-6">
+    <Form className="space-y-6 " onFinish={onFinish}>
+      <Form.Item
+        name="name"
+        rules={[{ required: true, message: "Please input your email!" }]}
+      >
+        <Input placeholder="Tên *" />
+      </Form.Item>
       <Form.Item
         name="email"
         rules={[{ required: true, message: "Please input your email!" }]}
@@ -107,10 +136,18 @@ const RegisterForm = () => {
       >
         <Input.Password placeholder="Mật khẩu *" />
       </Form.Item>
-      <Form.Item name="role">
+      <Form.Item
+        name="role"
+        rule={[
+          {
+            required: true,
+            message: "Please select your role!",
+          },
+        ]}
+      >
         <Radio.Group>
-          <Radio value="customer">I am a customer</Radio>
-          <Radio value="vendor">I am a vendor</Radio>
+          <Radio value="student">I am a customer</Radio>
+          <Radio value="tutor">I am a vendor</Radio>
         </Radio.Group>
       </Form.Item>
       <Form.Item>

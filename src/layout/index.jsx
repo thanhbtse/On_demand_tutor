@@ -9,6 +9,8 @@ import {
   Button,
   Divider,
   Avatar,
+  Dropdown,
+  Menu,
 } from "antd";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -16,7 +18,7 @@ import facebooklogo from "../assets/logo/icons8-facebook-48.png";
 import hatlogo from "../assets/images/gia-su-online-logo-png-v2-60.png";
 import animateLogo from "../assets/logo/icons8-youtube.gif";
 import { SearchOutlined } from "@ant-design/icons";
-
+import useAuth from "../hooks/useAuth";
 const { Header, Content, Footer } = Layout;
 const facebookLink = "https://www.facebook.com/tanthanh.bui.94617/";
 const youtubeLink = "https://www.youtube.com/watch?v=xvFZjo5PgG0";
@@ -24,11 +26,28 @@ const App = ({ children }) => {
   // const {
   //   token: {borderRadiusLG : 1, },
   // } = theme.useToken();
-
+  const { logout } = useAuth();
   App.propTypes = {
     children: PropTypes.node.isRequired,
   };
-
+  const handleLogout = () => {
+    logout();
+    notification.success({
+      message: "Logout Successful",
+      description: "You have successfully logged out.",
+      duration: 2,
+    });
+  };
+  const menu = (
+    <Menu>
+      <Menu.Item key="profile">
+        <Link to="/tai-khoan">Hồ Sơ</Link>
+      </Menu.Item>
+      <Menu.Item key="logout">
+        <p onClick={handleLogout}>đăng xuất</p>
+      </Menu.Item>
+    </Menu>
+  );
   return (
     <Layout>
       <Header
@@ -61,12 +80,14 @@ const App = ({ children }) => {
               <Link to="/tim-gia-su-online">Tìm Gia Sư</Link>
             </Button>
           </div>
-          <Link to="/ho-so">
-            <Avatar
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7rHb3Lmhnhau0CLSdDWBu3f4RKAiXHEV7hQ&s"
-              size="large"
-            />
-          </Link>
+          <Dropdown overlay={menu} trigger={["click"]}>
+            <Link to="#" onClick={(e) => e.preventDefault()}>
+              <Avatar
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7rHb3Lmhnhau0CLSdDWBu3f4RKAiXHEV7hQ&s"
+                size="large"
+              />
+            </Link>
+          </Dropdown>
         </div>
       </Header>
       <Header className="bg-[#eee]">
@@ -238,7 +259,6 @@ const App = ({ children }) => {
           Gia sư online © {new Date().getFullYear()} Công ty TNHH nhóm 5 thành
           viên
         </Footer>
-        
       </div>
     </Layout>
   );
