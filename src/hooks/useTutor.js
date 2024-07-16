@@ -12,15 +12,15 @@ import TurtorDetail from "../section/Turtor/turtorDetail";
 import { getCourseByTutor } from "../api/course";
 
 const useTutor = create((set) => ({
-  tutorLists: [],
+  tutorList: [],
   isloadingUserList: false,
   userTotalElements: "",
-  fetchTutorLists: async () => {
+  fetchTutorList: async () => {
     try {
       set({ isloadingUserList: true });
       const response = await getTutorList();
       if (response && response.status === 200) {
-        set({ tutorLists: response.data || [] });
+        set({ tutorList: response.data || [] });
         set({ userTotalElements: response?.data || "" });
       }
       set({ isloadingUserList: false });

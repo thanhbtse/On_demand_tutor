@@ -13,7 +13,7 @@ import {
 } from "@ant-design/icons";
 import meme from "../assets/images/images.jpg";
 import hatlogo from "../assets/logo/187390886-black-graduate-hat-with-golden-element-on-white-background-flat-design-illustration-vector-graphics.jpg";
-
+import useAuth from "../hooks/useAuth";
 const { Content, Sider, Footer } = Layout;
 
 function getItem(label, key, icon, children, path) {
@@ -44,7 +44,7 @@ const items = [
 
 const DashboardLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
-
+  const { isAuthenticated, infoUser , logout} = useAuth();
   const storeDefaultSelectedKeys = (keys) => {
     sessionStorage.setItem("keys", keys);
   };
@@ -96,6 +96,9 @@ const DashboardLayout = ({ children }) => {
       <Menu.Item key="2">
         <Link to="/">Shop</Link>
       </Menu.Item>
+      {/* <Menu.Item key="logout">
+        <p onClick={handleLogout}>đăng xuất</p>
+      </Menu.Item> */}
     </Menu>
   );
 

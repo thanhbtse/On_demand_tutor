@@ -6,7 +6,8 @@ const getTutorDetail = (id) => {
 
 const getTutorList = () => {
   return axiosClient.get("/tutors");
-};
+}
+
 const createTutor = (values) => {
   return axiosClient.post("/tutors", values);
 };

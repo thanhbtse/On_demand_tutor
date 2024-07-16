@@ -27,7 +27,7 @@ const App = ({ children }) => {
   // const {
   //   token: {borderRadiusLG : 1, },
   // } = theme.useToken();
-  const { isAuthenticated, infoUser } = useAuth();
+  const { isAuthenticated, infoUser , logout} = useAuth();
   console.log("check infoUser", infoUser.role);
   const imageURL = infoUser && infoUser.image ? (
     `http://localhost:5000/${infoUser.image.replace(/\\/g, "/")}`
@@ -35,7 +35,6 @@ const App = ({ children }) => {
     <UserOutlined />
   );
 
-  const { logout } = useAuth();
   App.propTypes = {
     children: PropTypes.node.isRequired,
   };
