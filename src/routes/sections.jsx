@@ -22,7 +22,6 @@ export const ProfilePage = lazy(() => import("../page/ProfilePage"));
 export const GioiThieuPage = lazy(() => import("../page/GioiThieuPage"));
 export const RegisterPage = lazy(() => import("../page/RegisterPage"));
 
-
 //Admin Page
 export const TurtorTablePage = lazy(() => import("../page/admin/turtorTable"));
 export const ReportView = lazy(() => import("../page/admin/ReportTable"));
@@ -31,13 +30,8 @@ export const ReportView = lazy(() => import("../page/admin/ReportTable"));
 export const TurtorCourse = lazy(() => import("../page/turtor/TurtorCourse"));
 export const MessagePage = lazy(() => import("../page/turtor/MessagePage"));
 
-
-
-
-
 export const Router = () => {
   const { isAuthenticated, infoUser } = useAuth();
-
 
   const routes = useRoutes([
     {
@@ -65,8 +59,8 @@ export const Router = () => {
           element: <TutorSearchPage />,
         },
         {
-          path: "/tai-khoan",
-          element: isAuthenticated ?  <ProfilePage /> :  <AccountPage />,
+          path: "/dang-nhap",
+          element: isAuthenticated ? <ProfilePage /> : <AccountPage />,
         },
         {
           path: "/dang-ky",
@@ -77,7 +71,7 @@ export const Router = () => {
           element: <TurtorInfoPage />,
         },
         {
-          path: "/view-detail-tutor",
+          path: "/tutors/:id",
           element: <DetailTutorPage />,
         },
         {
@@ -100,10 +94,10 @@ export const Router = () => {
           path: "/gio-hang",
           element: <CartPage />,
         },
-        // {
-        //   path: "/ho-so",
-        //   element: <ProfilePage />,
-        // },
+        {
+          path: "/ho-so",
+          element: <ProfilePage />,
+        },
         {
           path: "/gioi-thieu",
           element: <GioiThieuPage />,
@@ -137,7 +131,7 @@ export const Router = () => {
         {
           path: "/admin/report/view",
           element: <ReportView />,
-        }
+        },
       ],
     },
     {

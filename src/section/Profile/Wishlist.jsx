@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Button, List, Avatar, Rate } from "antd";
+import { Link } from "react-router-dom";
 
 const data = [
   {
@@ -40,7 +41,9 @@ const Wishlist = () => (
       renderItem={(item) => (
         <List.Item
           actions={[
-            <Button type="primary">Đăng kí</Button>,
+            <Link to="/gio-hang">
+              <Button type="primary">Đăng kí</Button>
+            </Link>,
             <Button
               shape="circle"
               icon={<span style={{ color: "red" }}>❤️</span>}
