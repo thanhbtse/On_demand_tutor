@@ -1,17 +1,18 @@
 import { create } from "zustand";
+import {  } from "../api/user";
 import { message } from "antd";
-import { createTutor, deleteTutor, getTutorList, updateTutor } from "../api/tutor";
+import { createCourse, deleteCourse, getCourseList, updateCourse } from "../api/course";
 
-const useTutor = create((set) => ({
-    tutorList: [],
+const useCourse = create((set) => ({
+    courseList: [],
     isloadingUserList: false,
     userTotalElements: "",
-    fetchTutorList: async () => {
+    fetchCourseList: async () => {
       try {
         set({ isloadingUserList: true });
-        const response = await getTutorList();
+        const response = await getCourseList();
         if (response && response.status === 200) {
-          set({ tutorList: response.data || [] });
+          set({ courseList: response.data || [] });
           set({ userTotalElements: response?.data || "" });
         }
         set({ isloadingUserList: false });
@@ -20,31 +21,31 @@ const useTutor = create((set) => ({
         console.error("Error fetching data:", error);
       }
     },
-    createNewTutor: async (values) => {
+    createNewCourse: async (values) => {
       try {
-        const res = await createTutor(values);
+        const res = await createCourse(values);
         if (res && res.status === 200) {
-          message.success("Tutor Created")
+          message.success("Course Created")
         }
       } catch (err) {
         console.log("Error creating", err);
       }
     },
-    updateExistingTutor: async (id,values) => {
+    updateExistingCourse: async (id,values) => {
       try {
-        const res = await updateTutor(id,values);
+        const res = await updateCourse(id,values);
         if (res && res.status === 200) {
-          message.success("Tutor Updated")
+          message.success("Course Updated")
         }
       } catch (err) {
         console.log("Error creating", err);
       }
     },
-    deleteExistingTutor: async (id) => {
+    deleteExistingCourse: async (id) => {
       try {
-        const res = await deleteTutor(id);
+        const res = await deleteCourse(id);
         if (res && res.status === 200) {
-          message.success("Tutor Deleted")
+          message.success("Course Deleted")
         }
       } catch (err) {
         console.log("Error creating", err);
@@ -52,4 +53,4 @@ const useTutor = create((set) => ({
     },
 }));
 
-export default useTutor;
+export default useCourse;

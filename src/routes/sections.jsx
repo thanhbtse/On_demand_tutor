@@ -1,6 +1,6 @@
 import { Children, Suspense, lazy } from "react";
-import { Navigate, Outlet, useRoutes } from "react-router-dom";
 import { Error404, Loading, ScrollToTop, AdminError } from "../components";
+import { Navigate, Outlet, useRoutes } from "react-router-dom";
 import App from "../layout/index";
 import DashboardLayout from "../layout/admin";
 import TutorSearchPage from "../page/TutorSearchPage";
@@ -9,7 +9,10 @@ import SubjectProduct from "../section/Subject/SubjectProduct";
 import SubjectDetail from "../section/Subject/SubjectDetail";
 import TurtorDashboardLayout from "../layout/turtordashboard";
 import TurTorError from "../components/TurtorError";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";import UserTable from "../page/admin/User Management/UserTable";
+import CourseTable from "../page/admin/Course Management/CourseTable";
+import TutorTable from "../page/admin/Tutor Management/TutorTable";
+
 //User Page
 export const HomePage = lazy(() => import("../page/HomePage"));
 export const ContactPage = lazy(() => import("../page/ContactPage"));
@@ -131,13 +134,22 @@ export const Router = () => {
           element: <AdminError />,
         },
         {
-          path: "/admin/turtor/view",
-          element: <TurtorTablePage />,
-        },
-        {
           path: "/admin/report/view",
           element: <ReportView />,
+        },
+        {
+          path: "/admin/user/view",
+          element: <UserTable />,
+        },
+        {
+          path: "/admin/class/view",
+          element: <CourseTable />,
+        },
+        {
+          path: "/admin/turtor/view",
+          element: <TutorTable />,
         }
+
       ],
     },
     {
