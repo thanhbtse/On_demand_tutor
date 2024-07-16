@@ -23,6 +23,7 @@ const useAuth = create((set) => ({
     Cookies.remove("token");
     sessionStorage.removeItem("keys");
     set({ isAuthenticated: false });
+    set({ infoUser: {} });
   },
 }));
 
