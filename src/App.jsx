@@ -13,6 +13,7 @@ function App() {
       fetchUserInfo();
     }
   }, [Cookies.get("token")]);
+  
   return (
     <>
      <Router />

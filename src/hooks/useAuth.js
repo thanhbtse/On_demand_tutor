@@ -6,6 +6,7 @@ const useAuth = create((set) => ({
   fetchUserInfo: async () => {
     try {
       const res = await getInfoUser();
+      console.log("check res", res);
       if (res && res.status === 200) {
         set({ infoUser: res?.data || {} });
       }

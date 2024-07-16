@@ -66,11 +66,7 @@ export const Router = () => {
         },
         {
           path: "/tai-khoan",
-          element: <ProfilePage />
-        },
-        {
-          path: "/dang-nhap",
-          element: <AccountPage />,
+          element: isAuthenticated ?  <ProfilePage /> :  <AccountPage />,
         },
         {
           path: "/dang-ky",

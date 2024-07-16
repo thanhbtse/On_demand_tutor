@@ -18,7 +18,7 @@ import PropTypes from "prop-types";
 import facebooklogo from "../assets/logo/icons8-facebook-48.png";
 import hatlogo from "../assets/images/gia-su-online-logo-png-v2-60.png";
 import animateLogo from "../assets/logo/icons8-youtube.gif";
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined, UserOutlined } from "@ant-design/icons";
 import useAuth from "../hooks/useAuth";
 const { Header, Content, Footer } = Layout;
 const facebookLink = "https://www.facebook.com/tanthanh.bui.94617/";
@@ -28,6 +28,11 @@ const App = ({ children }) => {
   //   token: {borderRadiusLG : 1, },
   // } = theme.useToken();
   const { isAuthenticated, infoUser } = useAuth();
+  console.log("check infoUser", infoUser.role);
+  const imageURL =
+    infoUser && typeof infoUser === "object" && infoUser.image
+      ? `http://localhost:5000/${infoUser.image.replace(/\\/g, "/")}`
+      : undefined;
   const { logout } = useAuth();
   App.propTypes = {
     children: PropTypes.node.isRequired,
@@ -47,13 +52,23 @@ const App = ({ children }) => {
           <Menu.Item key="profile">
             <Link to="/tai-khoan">Hồ Sơ</Link>
           </Menu.Item>
+          {(infoUser.role === "admin" || infoUser.role === "moderator") && (
+            <Menu.Item key="admin-dashboard">
+              <Link to="/admin/dashboard">Dashboard</Link>
+            </Menu.Item>
+          )}
+          {infoUser.role === "tutor" && (
+            <Menu.Item key="turtor-dashboard">
+              <Link to="/turtor/dashboard">Dashboard</Link>
+            </Menu.Item>
+          )}
           <Menu.Item key="logout">
             <p onClick={handleLogout}>đăng xuất</p>
           </Menu.Item>
         </>
       ) : (
         <Menu.Item key="login">
-          <Link to="/dang-nhap">Đăng nhập</Link>
+          <Link to="/tai-khoan">Đăng nhập</Link>
         </Menu.Item>
       )}
     </Menu>
@@ -93,8 +108,8 @@ const App = ({ children }) => {
           <Dropdown overlay={menu} trigger={["click"]}>
             <Link to="#" onClick={(e) => e.preventDefault()}>
               <Avatar
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7rHb3Lmhnhau0CLSdDWBu3f4RKAiXHEV7hQ&s"
                 size="large"
+                icon={!imageURL ? <UserOutlined /> : undefined}
               />
             </Link>
           </Dropdown>

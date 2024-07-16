@@ -15,7 +15,7 @@ const register = (name, email, password, role, image) => {
   return axiosClient.post("/auth/register", formData, );
 };
 const getInfoUser = () => {
-  return axiosClient.get("/api/authen/me"); 
+  return axiosClient.get("/auth/me"); 
 };
 
 export { login,  register, getInfoUser};
