@@ -61,7 +61,7 @@ const App = ({ children }) => {
           )}
           {infoUser.role === "tutor" && (
             <Menu.Item key="turtor-dashboard">
-              <Link to="/turtor/dashboard">Dashboard</Link>
+              <Link to="/courses/dashboard">Dashboard</Link>
             </Menu.Item>
           )}
           <Menu.Item key="logout">

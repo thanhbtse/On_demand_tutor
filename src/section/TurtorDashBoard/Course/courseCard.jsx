@@ -15,13 +15,19 @@ import {
   SearchOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import useCourse from "../../../hooks/useCourse";
+import useAuth from "../../../hooks/useAuth";
 const { Meta } = Card;
 
 function CourseList() {
+  const { courseList, fetchCoursesByTutor } = useCourse();
+  const { infoUser } = useAuth();
+  const tutorId = infoUser._id;
   const defaultValue = 2;
+
   const items = [
     {
-      label:"Xem chi tiết",
+      label: "Xem chi tiết",
       key: "0",
     },
     {
@@ -33,8 +39,13 @@ function CourseList() {
       key: "3",
     },
   ];
+
+  useEffect(() => {
+    fetchCoursesByTutor(tutorId);
+  }, [tutorId]);
+
   return (
-    <div className="containerr mx-[100px]">
+    <div className="container mx-[100px]">
       {/*Search and filter bar*/}
       <div className="search">
         <div className="flex flex-row justify-between">
@@ -124,59 +135,72 @@ function CourseList() {
       </div>
 
       {/*Course list*/}
-      <div className="mt-10">
-        <div class="relative max-w-xs border border-solid border-gray-200 rounded-none transition-all duration-500 hover:scale-105 hover:shadow-lg bg-white ">
-          <div class="block overflow-hidden">
-            <img
-              src="https://api.dicebear.com/7.x/miniavs/svg?seed=8"
-              alt="Card image"
-              className="rounded-none"
-            />
-          </div>
-          <div class="p-4">
-            <h4 class="text-base font-semibold text-gray-900 mb-2 capitalize transition-all duration-500 ">
-              Toán cấp 1
-            </h4>
-          </div>
-          <div className="border-t-[1px]">
-            <p></p>
-          </div>
-          <div class="p-4 flex flex-row justify-between">
-            <div className="space-x-2">
-              <Rate disabled count={1} defaultValue={defaultValue} />
-              <span>{defaultValue}</span>
+      <div className="grid grid-cols-4 gap-8 mt-10">
+        {courseList.map((course) => (
+          <div
+            key={course.id}
+            className="relative border border-solid border-gray-200 rounded-lg transition-all duration-500 hover:scale-105 hover:shadow-lg bg-white"
+          >
+            <div className="block overflow-hidden">
+              <img
+                src={
+                  course.image ||
+                  "https://api.dicebear.com/7.x/miniavs/svg?seed=8"
+                }
+                alt="Card image"
+                className="rounded-t-lg w-full h-40 object-cover"
+              />
             </div>
-            <div className="flex flex-row space-x-1">
-              <UserOutlined />
-              <p>10 học sinh</p>
+            <div className="p-4">
+              <h4 className="text-base font-semibold text-gray-900 mb-2 capitalize transition-all duration-500">
+                {course.title}
+              </h4>
+              <p className="text-sm text-gray-700 mb-2">{course.description}</p>
+            </div>
+            <div className="border-t-[1px]">
+              <p></p>
+            </div>
+            <div className="p-4 flex flex-row justify-between">
+              <div className="space-x-2">
+                <Rate
+                  disabled
+                  count={5}
+                  defaultValue={course.rating || defaultValue}
+                />
+                <span>{course.rating || defaultValue}</span>
+              </div>
+              <div className="flex flex-row space-x-1">
+                <UserOutlined />
+                <p>{course.studentsCount || 0} học sinh</p>
+              </div>
+            </div>
+            <div className="border-t-[1px]">
+              <p></p>
+            </div>
+            <div className="p-4 flex flex-row justify-between items-center">
+              <div>
+                <p className="text-[#FF6636]">{course.price} VND</p>
+              </div>
+              <div>
+                <Dropdown
+                  menu={{
+                    items,
+                  }}
+                  trigger={["click"]}
+                >
+                  <a onClick={(e) => e.preventDefault()}>
+                    <Space>
+                      <EllipsisOutlined />
+                    </Space>
+                  </a>
+                </Dropdown>
+              </div>
             </div>
           </div>
-          <div className="border-t-[1px]">
-            <p></p>
-          </div>
-          <div class="p-4 flex flex-row justify-between">
-            <div>
-              <p className="text-[#FF6636]">150,000 VND</p>
-            </div>
-            <div>
-              <Dropdown
-                menu={{
-                  items,
-                }}
-                trigger={["click"]}
-              >
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space>
-                    <EllipsisOutlined />
-                  </Space>
-                </a>
-              </Dropdown>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
-
     </div>
   );
 }
+
 export default CourseList;

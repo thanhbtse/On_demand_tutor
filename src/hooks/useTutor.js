@@ -7,6 +7,7 @@ import {
   getTutorList,
   updateTutor,
 } from "../api/tutor";
+import { getCourseByTutor } from "../api/course";
 
 const useTutor = create((set) => ({
   tutorList: [],

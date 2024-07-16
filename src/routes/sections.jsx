@@ -168,7 +168,7 @@ export const Router = () => {
       ],
     },
     {
-      path: "/turtor",
+      path: "/courses",
       element:
         isAuthenticated && hasTurtor ? (
           <TurtorDashboardLayout>
@@ -183,15 +183,15 @@ export const Router = () => {
         ),
       children: [
         {
-          path: "/turtor/program/view",
+          path: "/courses/tutor/:id",
           element: <TurtorCourse />,
         },
         {
-          path: "/turtor/program/create",
+          path: "/courses/program/create",
           element: <CreateNewCourse />,
         },
         {
-          path: "/turtor/message",
+          path: "/courses/message",
           element: <MessagePage />,
         },
         {
