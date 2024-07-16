@@ -8,6 +8,7 @@ import {
   Rate,
   Dropdown,
   Space,
+  Spin,
 } from "antd";
 import { Link } from "react-router-dom";
 import {
@@ -24,6 +25,7 @@ function CourseList() {
   const { infoUser } = useAuth();
   const tutorId = infoUser._id;
   const defaultValue = 2;
+  const [loading, setLoading] = useState(true);
 
   const items = [
     {
@@ -41,7 +43,12 @@ function CourseList() {
   ];
 
   useEffect(() => {
-    fetchCoursesByTutor(tutorId);
+    async function fetchData() {
+      setLoading(true);
+      await fetchCoursesByTutor(tutorId);
+      setLoading(false);
+    }
+    fetchData();
   }, [tutorId]);
 
   return (
@@ -135,70 +142,78 @@ function CourseList() {
       </div>
 
       {/*Course list*/}
-      <div className="grid grid-cols-4 gap-8 mt-10">
-        {courseList.map((course) => (
-          <div
-            key={course.id}
-            className="relative border border-solid border-gray-200 rounded-lg transition-all duration-500 hover:scale-105 hover:shadow-lg bg-white"
-          >
-            <div className="block overflow-hidden">
-              <img
-                src={
-                  course.image ||
-                  "https://api.dicebear.com/7.x/miniavs/svg?seed=8"
-                }
-                alt="Card image"
-                className="rounded-t-lg w-full h-40 object-cover"
-              />
-            </div>
-            <div className="p-4">
-              <h4 className="text-base font-semibold text-gray-900 mb-2 capitalize transition-all duration-500">
-                {course.title}
-              </h4>
-              <p className="text-sm text-gray-700 mb-2">{course.description}</p>
-            </div>
-            <div className="border-t-[1px]">
-              <p></p>
-            </div>
-            <div className="p-4 flex flex-row justify-between">
-              <div className="space-x-2">
-                <Rate
-                  disabled
-                  count={5}
-                  defaultValue={course.rating || defaultValue}
+      {loading ? (
+        <div className="flex justify-center items-center h-full">
+          <Spin size="large" />
+        </div>
+      ) : (
+        <div className="grid grid-cols-4 gap-8 mt-10">
+          {courseList.map((course) => (
+            <div
+              key={course.id}
+              className="relative border border-solid border-gray-200 rounded-lg transition-all duration-500 hover:scale-105 hover:shadow-lg bg-white"
+            >
+              <div className="block overflow-hidden">
+                <img
+                  src={
+                    course.image ||
+                    "https://api.dicebear.com/7.x/miniavs/svg?seed=8"
+                  }
+                  alt="Card image"
+                  className="rounded-t-lg w-full h-40 object-cover"
                 />
-                <span>{course.rating || defaultValue}</span>
               </div>
-              <div className="flex flex-row space-x-1">
-                <UserOutlined />
-                <p>{course.studentsCount || 0} học sinh</p>
+              <div className="p-4">
+                <h4 className="text-base font-semibold text-gray-900 mb-2 capitalize transition-all duration-500">
+                  {course.title}
+                </h4>
+                <p className="text-sm text-gray-700 mb-2">
+                  {course.description}
+                </p>
+              </div>
+              <div className="border-t-[1px]">
+                <p></p>
+              </div>
+              <div className="p-4 flex flex-row justify-between">
+                <div className="space-x-2">
+                  <Rate
+                    disabled
+                    count={5}
+                    defaultValue={course.rating || defaultValue}
+                  />
+                  <span>{course.rating || defaultValue}</span>
+                </div>
+                <div className="flex flex-row space-x-1">
+                  <UserOutlined />
+                  <p>{course.studentsCount || 0} học sinh</p>
+                </div>
+              </div>
+              <div className="border-t-[1px]">
+                <p></p>
+              </div>
+              <div className="p-4 flex flex-row justify-between items-center">
+                <div>
+                  <p className="text-[#FF6636]">{course.price} VND</p>
+                </div>
+                <div>
+                  <Dropdown
+                    menu={{
+                      items,
+                    }}
+                    trigger={["click"]}
+                  >
+                    <a onClick={(e) => e.preventDefault()}>
+                      <Space>
+                        <EllipsisOutlined />
+                      </Space>
+                    </a>
+                  </Dropdown>
+                </div>
               </div>
             </div>
-            <div className="border-t-[1px]">
-              <p></p>
-            </div>
-            <div className="p-4 flex flex-row justify-between items-center">
-              <div>
-                <p className="text-[#FF6636]">{course.price} VND</p>
-              </div>
-              <div>
-                <Dropdown
-                  menu={{
-                    items,
-                  }}
-                  trigger={["click"]}
-                >
-                  <a onClick={(e) => e.preventDefault()}>
-                    <Space>
-                      <EllipsisOutlined />
-                    </Space>
-                  </a>
-                </Dropdown>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
