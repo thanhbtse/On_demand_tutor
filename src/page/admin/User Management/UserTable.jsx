@@ -109,7 +109,7 @@ function UserTable() {
       </Helmet>
       <div className="min-w-[250px]">
         <div className="bg-[#fff] p-5 rounded-t-xl">
-          <p className="text-2xl text-black font-bold">Report List</p>
+          <p className="text-2xl text-black font-bold">User List</p>
         </div>
         <div className="bg-[#fff] p-5 rounded-t-xl">
           <Button

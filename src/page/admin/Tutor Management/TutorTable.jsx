@@ -2,18 +2,18 @@ import { Helmet } from "react-helmet";
 import { Table, Button, Modal, Form, Popconfirm } from "antd";
 import { useEffect, useState } from "react";
 
-import useCourse from "../../../hooks/useCourse";
-import FormCreateCourse from "./FormCreateCourse";
-import FormUpdateCourse from "./FormUpdateCourse";
+import useTutor from "../../../hooks/useTutor";
+import FormCreateTutor from "./FormCreateTutor";
+import FormUpdateTutor from "./FormUpdateTutor";
 
-function CourseTable() {
+function TutorTable() {
   const {
-    courseList,
-    fetchCourseList,
-    createNewCourse,
-    updateExistingCourse,
-    deleteExistingCourse,
-  } = useCourse();
+    tutorList,
+    fetchTutorList,
+    createNewTutor,
+    updateExistingTutor,
+    deleteExistingTutor,
+  } = useTutor();
   const [createModal, setCreateModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [editValue, setEditValue] = useState();
@@ -21,56 +21,48 @@ function CourseTable() {
   const [formEdit] = Form.useForm();
   const handleUpdate = async (record) => {
     const id = editValue._id;
-    await updateExistingCourse(id, record);
-    await fetchCourseList();
+    await updateExistingTutor(id, record);
+    await fetchTutorList();
     setEditModal(false);
     formEdit.resetFields();
   };
 
   const handleDelete = async (values) => {
-    await deleteExistingCourse(values._id);
-    await fetchCourseList();
+    await deleteExistingTutor(values._id);
+    await fetchTutorList();
   };
 
   const handleCreate = async (record) => {
     console.log("Delete:", record);
 
-    await createNewCourse(record);
-    await fetchCourseList();
+    await createNewTutor(record);
+    await fetchTutorList();
     setCreateModal(false);
     form.resetFields();
   };
 
   const columns = [
     {
-      title: "Course ID",
+      title: "Tutor ID",
       dataIndex: "_id",
       width: "15%",
     },
     {
-      title: "Course Name",
-      dataIndex: "title",
-      width: "15%",
-    },
-    {
-      title: "Description",
-      dataIndex: "description",
-      width: "15%",
-    },
-    {
       title: "Tutor Name",
-      dataIndex: "tutor",
-      render: (tutor) => tutor ? tutor.info.name : 'Unknown',
+      dataIndex: "info",
+      render: (tutor) => tutor ? tutor.name : 'Unknown',
       width: "15%",
     },
     {
-      title: "Image",
-      dataIndex: "image",
+      title: "Tutor Address",
+      dataIndex: "info",
+      render: (tutor) => tutor ? tutor.address : 'Unknown',
       width: "15%",
     },
     {
-      title: "Price",
-      dataIndex: "price",
+      title: "Tutor Image",
+      dataIndex: "info",
+      render: (tutor) => tutor ? tutor.image : 'Unknown',
       width: "15%",
     },
     {
@@ -88,7 +80,7 @@ function CourseTable() {
             Edit
           </Button>
           <Popconfirm
-            title="Are you sure you want to delete this course?"
+            title="Are you sure you want to delete this tutor?"
             onConfirm={() => handleDelete(record)}
             okText="Yes"
             cancelText="No"
@@ -105,7 +97,7 @@ function CourseTable() {
 
   useEffect(() => {
     (async () => {
-      await fetchCourseList();
+      await fetchTutorList();
     })();
   }, []);
 
@@ -116,7 +108,7 @@ function CourseTable() {
       </Helmet>
       <div className="min-w-[250px]">
         <div className="bg-[#fff] p-5 rounded-t-xl">
-          <p className="text-2xl text-black font-bold">Course List</p>
+          <p className="text-2xl text-black font-bold">Tutor List</p>
         </div>
         <div className="bg-[#fff] p-5 rounded-t-xl">
           <Button
@@ -124,12 +116,12 @@ function CourseTable() {
               setCreateModal(true);
             }}
           >
-            Create New Course
+            Create New Tutor
           </Button>
         </div>
         <div className="p-5" data-testid="classTable">
           <div className="scrollbar pagination overflow-x-auto">
-            <Table columns={columns} dataSource={courseList} rowKey={"_id"} />
+            <Table columns={columns} dataSource={tutorList} rowKey={"_id"} />
           </div>
         </div>
       </div>
@@ -140,11 +132,11 @@ function CourseTable() {
           setCreateModal(false);
         }}
       >
-        <FormCreateCourse
+        <FormCreateTutor
           form={form}
           setCreateModal={setCreateModal}
           handleCreate={handleCreate}
-        ></FormCreateCourse>
+        ></FormCreateTutor>
       </Modal>
       <Modal
         open={editModal}
@@ -154,14 +146,14 @@ function CourseTable() {
           formEdit.resetFields();
         }}
       >
-        <FormUpdateCourse
+        <FormUpdateTutor
           formEdit={formEdit}
           editValue={editValue}
           handleUpdate={handleUpdate}
-        ></FormUpdateCourse>
+        ></FormUpdateTutor>
       </Modal>
     </div>
   );
 }
 
-export default CourseTable;
+export default TutorTable;

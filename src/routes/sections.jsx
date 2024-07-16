@@ -11,6 +11,7 @@ import TurtorDashboardLayout from "../layout/turtordashboard";
 import TurTorError from "../components/TurtorError";
 import useAuth from "../hooks/useAuth";import UserTable from "../page/admin/User Management/UserTable";
 import CourseTable from "../page/admin/Course Management/CourseTable";
+import TutorTable from "../page/admin/Tutor Management/TutorTable";
 
 //User Page
 export const HomePage = lazy(() => import("../page/HomePage"));
@@ -137,10 +138,6 @@ export const Router = () => {
           element: <AdminError />,
         },
         {
-          path: "/admin/turtor/view",
-          element: <TurtorTablePage />,
-        },
-        {
           path: "/admin/report/view",
           element: <ReportView />,
         },
@@ -151,7 +148,12 @@ export const Router = () => {
         {
           path: "/admin/class/view",
           element: <CourseTable />,
+        },
+        {
+          path: "/admin/turtor/view",
+          element: <TutorTable />,
         }
+
       ],
     },
     {
