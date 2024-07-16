@@ -83,7 +83,8 @@ function CourseTable() {
       render: (_, record) => (
         <div>
           <Button
-            type="link"
+             type="primary"
+             style={{backgroundColor:"orange"}}
             onClick={() => {
               setEditModal(true);
               setEditValue(record);
@@ -97,7 +98,7 @@ function CourseTable() {
             okText="Yes"
             cancelText="No"
           >
-            <Button type="link" danger>
+            <Button type="primary" danger>
               Delete
             </Button>
           </Popconfirm>
@@ -124,6 +125,8 @@ function CourseTable() {
         </div>
         <div className="bg-[#fff] p-5 rounded-t-xl">
           <Button
+          type="primary"
+          style={{backgroundColor:"palevioletred"}}
             onClick={() => {
               setCreateModal(true);
             }}
@@ -138,6 +141,7 @@ function CourseTable() {
         </div>
       </div>
       <Modal
+      title="Create New Course"
         open={createModal}
         footer={null}
         onCancel={() => {
@@ -151,6 +155,7 @@ function CourseTable() {
         ></FormCreateCourse>
       </Modal>
       <Modal
+      title="Create Course"
         open={editModal}
         footer={null}
         onCancel={() => {
