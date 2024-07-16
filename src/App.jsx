@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { Router } from "./routes/sections";
 import { FloatButton } from 'antd';
 import { UpOutlined } from '@ant-design/icons';

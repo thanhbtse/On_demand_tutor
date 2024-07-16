@@ -9,6 +9,7 @@ import SubjectProduct from "../section/Subject/SubjectProduct";
 import SubjectDetail from "../section/Subject/SubjectDetail";
 import TurtorDashboardLayout from "../layout/turtordashboard";
 import TurTorError from "../components/TurtorError";
+import UserTable from "../page/admin/UserTable";
 
 //User Page
 export const HomePage = lazy(() => import("../page/HomePage"));
@@ -123,6 +124,10 @@ export const Router = () => {
         {
           path: "/admin/report/view",
           element: <ReportView />,
+        },
+        {
+          path: "/admin/user/view",
+          element: <UserTable />,
         }
       ],
     },
