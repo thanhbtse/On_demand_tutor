@@ -18,8 +18,19 @@ const FormUpdateCourse = ({ formEdit, editValue, handleUpdate }) => {
         }
     }, [formEdit, editValue]);
 
-    return (
+    const formItemLayout = {
+        labelCol: {
+          xs: { span: 24 },
+          sm: { span: 8 },
+        },
+        wrapperCol: {
+          xs: { span: 24 },
+          sm: { span: 16 },
+        },
+      };
+      return (
         <Form
+          {...formItemLayout}
             form={formEdit}
             layout="vertical"
             onFinish={handleUpdate}
@@ -34,14 +45,20 @@ const FormUpdateCourse = ({ formEdit, editValue, handleUpdate }) => {
             <Form.Item
                 name="title"
                 label="Title"
-                rules={[{ required: true, message: "Please input the course title!" }]}
+                rules={[
+                    { required: true, message: "Please input the course title!" },
+                    { min: 3, message: "Title must be at least 3 characters" }
+                ]}
             >
                 <Input />
             </Form.Item>
             <Form.Item
                 name="description"
                 label="Description"
-                rules={[{ required: true, message: "Please input the Description!" }]}
+                rules={[
+                    { required: true, message: "Please input the description!" },
+                    { min: 3, message: "Description must be at least 3 characters" }
+                ]}
             >
                 <Input />
             </Form.Item>
@@ -59,19 +76,25 @@ const FormUpdateCourse = ({ formEdit, editValue, handleUpdate }) => {
             <Form.Item
                 name="price"
                 label="Price"
-                rules={[{ required: true, message: "Please input the price!" }]}
+                rules={[
+                    { required: true, message: "Please input the price!" },
+                    { pattern: /^[0-9]+(\.[0-9]{1,2})?$/, message: "Price must be a valid number" }
+                ]}
             >
                 <Input />
             </Form.Item>
             <Form.Item
                 name="image"
                 label="Image"
-                rules={[{ required: true, message: "Please choose an image!" }]}
+                rules={[
+                    { required: true, message: "Please input the image URL!" },
+                    { type: 'url', message: "Image must be a valid URL" }
+                ]}
             >
                 <Input />
             </Form.Item>
             <Form.Item>
-                <Button type='primary' htmlType='submit'>Submit</Button>
+                <Button style={{backgroundColor:"palevioletred"}} style={{backgroundColor:"palevioletred"}} type='primary' htmlType='submit'>Submit</Button>
             </Form.Item>
         </Form>
     );
