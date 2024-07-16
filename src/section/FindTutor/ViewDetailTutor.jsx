@@ -3,7 +3,6 @@ import { Rate, Image, Breadcrumb, List, Avatar } from "antd";
 import useTutor from "../../hooks/useTutor";
 import { useParams } from "react-router";
 import { LoadingOutlined } from "@ant-design/icons";
-import { Spin } from "@ant-design/icons";
 const ViewDetailTutor = () => {
   const { id } = useParams();
   const { tutorDetail, fetchTutorDetail, isLoadingTutorDetail } = useTutor();
@@ -15,7 +14,7 @@ const ViewDetailTutor = () => {
   if (isLoadingTutorDetail) {
     return (
       <div>
-        <Spin />
+        <LoadingOutlined />
       </div>
     );
   }

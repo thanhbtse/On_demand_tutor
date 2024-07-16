@@ -1,20 +1,29 @@
 import { create } from "zustand";
-import { getTutor, getTutorDetail } from "../api/tutor";
+import { message } from "antd";
+import {
+  createTutor,
+  deleteTutor,
+  getTutorDetail,
+  getTutorList,
+  updateTutor,
+} from "../api/tutor";
 
 const useTutor = create((set) => ({
   tutorList: [],
-  isLoadingTutorList: false,
+  isloadingUserList: false,
+  userTotalElements: "",
   fetchTutorList: async () => {
     try {
-      set({ isLoadingTutorList: true });
-      const response = await getTutor();
+      set({ isloadingUserList: true });
+      const response = await getTutorList();
       if (response && response.status === 200) {
         set({ tutorList: response.data || [] });
+        set({ userTotalElements: response?.data || "" });
       }
+      set({ isloadingUserList: false });
     } catch (error) {
+      set({ isloadingUserList: false });
       console.error("Error fetching data:", error);
-    } finally {
-      set({ isLoadingTutorList: false });
     }
   },
   tutorDetail: {},
@@ -23,7 +32,6 @@ const useTutor = create((set) => ({
     try {
       set({ isLoadingTutorDetail: true });
       const response = await getTutorDetail(id);
-      console.log("API Response:", response); // Log dữ liệu từ API
       if (response && response.status === 200) {
         set({ tutorDetail: response.data || {} });
       }
@@ -31,6 +39,36 @@ const useTutor = create((set) => ({
       console.error("Error fetching data:", error);
     } finally {
       set({ isLoadingTutorDetail: false });
+    }
+  },
+  createNewTutor: async (values) => {
+    try {
+      const res = await createTutor(values);
+      if (res && res.status === 200) {
+        message.success("Tutor Created");
+      }
+    } catch (err) {
+      console.log("Error creating", err);
+    }
+  },
+  updateExistingTutor: async (id, values) => {
+    try {
+      const res = await updateTutor(id, values);
+      if (res && res.status === 200) {
+        message.success("Tutor Updated");
+      }
+    } catch (err) {
+      console.log("Error creating", err);
+    }
+  },
+  deleteExistingTutor: async (id) => {
+    try {
+      const res = await deleteTutor(id);
+      if (res && res.status === 200) {
+        message.success("Tutor Deleted");
+      }
+    } catch (err) {
+      console.log("Error creating", err);
     }
   },
 }));

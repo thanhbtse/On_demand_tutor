@@ -32,7 +32,7 @@ function ProfileStudent() {
         <Tabs defaultActiveKey="1" tabBarStyle={{ marginBottom: 0 }}>
           <TabPane tab="Tổng Quan" key="1">
             <h3 className="text-lg font-semibold mb-4">Tổng Quan</h3>
-            <Dashboard />
+            <Dashboard infoUser={infoUser} id={infoUser._id}/>
           </TabPane>
           <TabPane tab="Gia sư" key="2">
             <h3 className="text-lg font-semibold mb-4">Gia sư</h3>
@@ -51,7 +51,6 @@ function ProfileStudent() {
             <PurchaseHistory />
           </TabPane>
           <TabPane tab="Cài đặt" key="6">
-            <h3 className="text-lg font-semibold mb-4">Cài đặt tài khoản</h3>
             <Setting infoUser={infoUser} id={infoUser._id} />{" "}
           </TabPane>
         </Tabs>

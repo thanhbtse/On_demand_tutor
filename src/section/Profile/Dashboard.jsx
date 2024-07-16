@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Button, Tabs, Rate } from "antd";
 import { Link } from "react-router-dom";
 import { ShoppingCartOutlined } from "@ant-design/icons";
-
+import PropTypes from "prop-types";
 const { Meta } = Card;
 
 const tutors = [
@@ -28,13 +28,15 @@ const tutors = [
   },
 ];
 
-function Dashboard() {
+function Dashboard( {infoUser, id }) {
+
   return (
     <div>
       {" "}
       <h3 className="text-lg font-semibold mb-4">
-        Hãy bắt đầu tìm gia sư cho Kevin
+        Hãy bắt đầu tìm gia sư cho {infoUser.name}
       </h3>
+      {/* turtor card*/}
       <div className="flex space-x-3">
         {tutors.map((tutor) => (
           <Link to="/view-detail-tutor" key={tutor.id}>
@@ -84,5 +86,9 @@ function Dashboard() {
     </div>
   );
 }
+
+Dashboard.propTypes = {
+  id: PropTypes.string,
+};
 
 export default Dashboard;

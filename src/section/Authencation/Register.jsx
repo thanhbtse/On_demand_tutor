@@ -150,7 +150,7 @@ function RegisterForm() {
       </Form.Item>
       <p className="text-center mt-5">
         Or
-        <Link to="/dang-nhap" className="text-pink-500 hover:underline px-2">
+        <Link to="/tai-khoan" className="text-pink-500 hover:underline px-2">
           Login now
         </Link>
       </p>

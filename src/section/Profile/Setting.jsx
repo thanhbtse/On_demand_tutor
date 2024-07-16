@@ -62,15 +62,18 @@ function Setting({ infoUser, id }) {
 
   const onChangepassword = async (values) => {
     const { password, newPassword } = values;
-    const res = await fectchChangePassword(id, { oldPassword: password, newPassword });
+    const res = await fectchChangePassword(id, {
+      oldPassword: password,
+      newPassword,
+    });
     if (res && res.status === 200) {
       form.resetFields();
     }
   };
   return (
-    <div>
-      <Row gutter={16}>
-        <Col span={8}>
+    <div className="py-20 px-44">
+      <Row gutter={16} c>
+        <Col span={8} className="mt-10">
           <div className="flex flex-col items-center">
             <Avatar size={150} src={imageURL} className="mb-4" />
             <Upload
@@ -88,62 +91,103 @@ function Setting({ infoUser, id }) {
             </p>
           </div>
         </Col>
-        <Col span={16}>
-          <Form
-            form={form}
-            layout="vertical"
-            initialValues={infoUser}
-            onFinish={onSubmit}
-          >
-            <Form.Item
-              label="Tên người dùng"
-              name="name"
-              style={{ width: 400 }}
+
+        <Col span={16} className="space-y-10">
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Cài đặt tài khoản</h3>
+            <Form
+              form={form}
+              layout="vertical"
+              initialValues={infoUser}
+              onFinish={onSubmit}
             >
-              <Input
-                placeholder="Nhập tên người dùng của bạn"
-                readOnly={!isEditing}
-              />
-            </Form.Item>
-            <Form.Item label="Email" name="email" style={{ width: 400 }}>
-              <Input placeholder="Địa chỉ email" readOnly={!isEditing} />
-            </Form.Item>
-            <Form.Item name="role">
-              <Radio.Group disabled={!isEditing}>
-                <Radio value="student">I am a customer</Radio>
-                <Radio value="tutor">I am a vendor</Radio>
-              </Radio.Group>
-            </Form.Item>
-            {!isEditing ? (
-              <Button
-                className="bg-[#ff4778] text-white"
-                onClick={onEdit}
-                style={{ marginLeft: 8 }}
+              <Form.Item
+                label="Tên người dùng"
+                name="name"
+                style={{ width: 400 }}
               >
-                Edit
+                <Input
+                  placeholder="Nhập tên người dùng của bạn"
+                  readOnly={!isEditing}
+                />
+              </Form.Item>
+              <Form.Item label="Email" name="email" style={{ width: 400 }}>
+                <Input placeholder="Địa chỉ email" readOnly={!isEditing} />
+              </Form.Item>
+              <Form.Item name="role">
+                <Radio.Group disabled={!isEditing}>
+                  <Radio value="student">I am a customer</Radio>
+                  <Radio value="tutor">I am a vendor</Radio>
+                </Radio.Group>
+              </Form.Item>
+              {!isEditing ? (
+                <Button
+                  className="bg-[#ff4778] text-white"
+                  onClick={onEdit}
+                  style={{ marginLeft: 8 }}
+                >
+                  Cập nhật thông tin
+                </Button>
+              ) : (
+                <div className="space-x-6">
+                  <Button
+                    className="bg-[#ff4778] text-white"
+                    htmlType="submit"
+                    disabled={!isEditing}
+                  >
+                    Lưu thay đổi
+                  </Button>
+                  <Button
+                    className="bg-[#ff4778] text-white"
+                    onClick={handleCancel}
+                  >
+                    Huỷ
+                  </Button>
+                </div>
+              )}
+            </Form>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold my-4">Đổi mật khẩu</h3>
+            <Form layout="vertical" onFinish={onChangepassword}>
+              <Form.Item
+                label="Mật khẩu hiện tại"
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your current password!",
+                  },
+                ]}
+              >
+                <Input.Password
+                  placeholder="Mật khẩu"
+                  style={{ width: "400px" }}
+                />
+              </Form.Item>
+              <Form.Item
+                label="Mật khẩu mới"
+                name="newPassword"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your new password!",
+                  },
+                ]}
+              >
+                <Input.Password
+                  placeholder="Mật khẩu"
+                  style={{ width: "400px" }}
+                />
+              </Form.Item>
+              <Button className="bg-[#ff4778] text-white" htmlType="submit">
+                Đổi mật khẩu
               </Button>
-            ) : (
-              <div className="space-x-6">
-                <Button
-                  className="bg-[#ff4778] text-white"
-                  htmlType="submit"
-                  disabled={!isEditing}
-                >
-                  Lưu thay đổi
-                </Button>
-                <Button
-                  className="bg-[#ff4778] text-white"
-                  onClick={handleCancel}
-                >
-                  Close
-                </Button>
-              </div>
-            )}
-          </Form>
+            </Form>
+          </div>
         </Col>
       </Row>
-
-      <h3 className="text-lg font-semibold my-4">Đổi mật khẩu</h3>
+      {/* <h3 className="text-lg font-semibold my-4">Đổi mật khẩu</h3>
       <Form layout="vertical" onFinish={onChangepassword}>
         <Form.Item
           label="Mật khẩu hiện tại"
@@ -166,7 +210,7 @@ function Setting({ infoUser, id }) {
         <Button type="primary" htmlType="submit">
           Đổi mật khẩu
         </Button>
-      </Form>
+      </Form> */}
     </div>
   );
 }
