@@ -9,7 +9,7 @@ import SubjectProduct from "../section/Subject/SubjectProduct";
 import SubjectDetail from "../section/Subject/SubjectDetail";
 import TurtorDashboardLayout from "../layout/turtordashboard";
 import TurTorError from "../components/TurtorError";
-import UserTable from "../page/admin/UserTable";
+import useAuth from "../hooks/useAuth";import UserTable from "../page/admin/UserTable";
 
 //User Page
 export const HomePage = lazy(() => import("../page/HomePage"));
@@ -21,6 +21,8 @@ export const SubjectPage = lazy(() => import("../page/SubjectPage"));
 export const CartPage = lazy(() => import("../page/CartPage"));
 export const ProfilePage = lazy(() => import("../page/ProfilePage"));
 export const GioiThieuPage = lazy(() => import("../page/GioiThieuPage"));
+export const RegisterPage = lazy(() => import("../page/RegisterPage"));
+
 
 //Admin Page
 export const TurtorTablePage = lazy(() => import("../page/admin/turtorTable"));
@@ -29,7 +31,15 @@ export const ReportView = lazy(() => import("../page/admin/ReportTable"));
 //Turtor Page
 export const TurtorCourse = lazy(() => import("../page/turtor/TurtorCourse"));
 export const MessagePage = lazy(() => import("../page/turtor/MessagePage"));
+
+
+
+
+
 export const Router = () => {
+  const { isAuthenticated, infoUser } = useAuth();
+
+
   const routes = useRoutes([
     {
       path: "/",
@@ -57,7 +67,15 @@ export const Router = () => {
         },
         {
           path: "/tai-khoan",
+          element: <ProfilePage />
+        },
+        {
+          path: "/dang-nhap",
           element: <AccountPage />,
+        },
+        {
+          path: "/dang-ky",
+          element: <RegisterPage />,
         },
         {
           path: "/gia-su",
@@ -87,10 +105,10 @@ export const Router = () => {
           path: "/gio-hang",
           element: <CartPage />,
         },
-        {
-          path: "/ho-so",
-          element: <ProfilePage />,
-        },
+        // {
+        //   path: "/ho-so",
+        //   element: <ProfilePage />,
+        // },
         {
           path: "/gioi-thieu",
           element: <GioiThieuPage />,

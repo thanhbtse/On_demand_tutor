@@ -6,7 +6,13 @@ import { UpOutlined } from '@ant-design/icons';
 import useAuth from "./hooks/useAuth";
 
 function App() {
+  const { fetchUserInfo, isAuthenticated } = useAuth();
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchUserInfo();
+    }
+  }, [Cookies.get("token")]);
   return (
     <>
      <Router />
