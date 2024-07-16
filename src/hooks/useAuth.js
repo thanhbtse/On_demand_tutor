@@ -1,23 +1,23 @@
 import Cookies from "js-cookie";
 import { create } from "zustand";
-import { login } from "../api/authen.js";
-
+import { getInfoUser } from "../api/authen.js";
 const useAuth = create((set) => ({
   infoUser: {},
-  isAuthenticated: !!Cookies.get("token"),
-  login: async (email, password) => {
+  fetchUserInfo: async () => {
     try {
-      const res = await login(email, password);
-      if (res && res.status === 200 && res.data.token) {
-        Cookies.set("token", res.data.token, { expires: 7 });
-        set({ isAuthenticated: true });
-        set({ infoUser: res.data.user });
+      const res = await getInfoUser();
+      if (res && res.status === 200) {
+        set({ infoUser: res?.data || {} });
       }
-    } catch (error) {
-      console.log("error", error);
+      console.log("check data", infoUser)
+    } catch (err) {
+      console.log("Error fetching userInfo", err);
     }
   },
-
+  isAuthenticated: !!Cookies.get("token"),
+  login: () => {
+    set({ isAuthenticated: true });
+  },
   logout: () => {
     Cookies.remove("token");
     sessionStorage.removeItem("keys");

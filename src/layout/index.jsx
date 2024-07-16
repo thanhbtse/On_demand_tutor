@@ -11,6 +11,7 @@ import {
   Avatar,
   Dropdown,
   Menu,
+  notification,
 } from "antd";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -26,6 +27,7 @@ const App = ({ children }) => {
   // const {
   //   token: {borderRadiusLG : 1, },
   // } = theme.useToken();
+  const { isAuthenticated, infoUser } = useAuth();
   const { logout } = useAuth();
   App.propTypes = {
     children: PropTypes.node.isRequired,
@@ -40,12 +42,20 @@ const App = ({ children }) => {
   };
   const menu = (
     <Menu>
-      <Menu.Item key="profile">
-        <Link to="/tai-khoan">Hồ Sơ</Link>
-      </Menu.Item>
-      <Menu.Item key="logout">
-        <p onClick={handleLogout}>đăng xuất</p>
-      </Menu.Item>
+      {isAuthenticated ? (
+        <>
+          <Menu.Item key="profile">
+            <Link to="/tai-khoan">Hồ Sơ</Link>
+          </Menu.Item>
+          <Menu.Item key="logout">
+            <p onClick={handleLogout}>đăng xuất</p>
+          </Menu.Item>
+        </>
+      ) : (
+        <Menu.Item key="login">
+          <Link to="/dang-nhap">Đăng nhập</Link>
+        </Menu.Item>
+      )}
     </Menu>
   );
   return (

@@ -20,6 +20,8 @@ export const SubjectPage = lazy(() => import("../page/SubjectPage"));
 export const CartPage = lazy(() => import("../page/CartPage"));
 export const ProfilePage = lazy(() => import("../page/ProfilePage"));
 export const GioiThieuPage = lazy(() => import("../page/GioiThieuPage"));
+export const RegisterPage = lazy(() => import("../page/RegisterPage"));
+
 
 //Admin Page
 export const TurtorTablePage = lazy(() => import("../page/admin/turtorTable"));
@@ -35,6 +37,8 @@ export const MessagePage = lazy(() => import("../page/turtor/MessagePage"));
 
 export const Router = () => {
   const { isAuthenticated, infoUser } = useAuth();
+
+
   const routes = useRoutes([
     {
       path: "/",
@@ -62,7 +66,15 @@ export const Router = () => {
         },
         {
           path: "/tai-khoan",
-          element: isAuthenticated ? <ProfilePage /> : <AccountPage />,
+          element: <ProfilePage />
+        },
+        {
+          path: "/dang-nhap",
+          element: <AccountPage />,
+        },
+        {
+          path: "/dang-ky",
+          element: <RegisterPage />,
         },
         {
           path: "/gia-su",
