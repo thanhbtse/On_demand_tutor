@@ -92,9 +92,6 @@ const TurtorDashboardLayout = ({ children }) => {
       <Menu.Item key="2">
         <Link to="/">Shop</Link>
       </Menu.Item>
-      <Menu.Item key="1" onClick={handleLogout}>
-        Logout
-      </Menu.Item>
     </Menu>
   );
 

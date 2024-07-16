@@ -39,6 +39,9 @@ export const ReportView = lazy(() => import("../page/admin/ReportTable"));
 //Turtor Page
 export const TurtorCourse = lazy(() => import("../page/turtor/TurtorCourse"));
 export const MessagePage = lazy(() => import("../page/turtor/MessagePage"));
+export const CreateNewCourse = lazy(() =>
+  import("../page/turtor/CreateNewCourse")
+);
 
 const checkAccess = (isAdmin) => {
   return isAdmin === "admin";
@@ -182,6 +185,10 @@ export const Router = () => {
         {
           path: "/turtor/program/view",
           element: <TurtorCourse />,
+        },
+        {
+          path: "/turtor/program/create",
+          element: <CreateNewCourse />,
         },
         {
           path: "/turtor/message",

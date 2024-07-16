@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { Table, Button, Modal, Form, Popconfirm } from "antd";
+import { Table, Button, Modal, Form, Popconfirm, message } from "antd";
 import { useEffect, useState } from "react";
 
 import useCourse from "../../../hooks/useCourse";
@@ -28,13 +28,17 @@ function CourseTable() {
   };
 
   const handleDelete = async (values) => {
-    await deleteExistingCourse(values._id);
-    await fetchCourseList();
+    try {
+      await deleteExistingCourse(values._id);
+      await fetchCourseList();
+      message.success("Xóa khóa học thành công");
+    } catch (error) {
+      message.error("Xóa khóa học không thành công");
+    }
   };
 
   const handleCreate = async (record) => {
     console.log("Delete:", record);
-
     await createNewCourse(record);
     await fetchCourseList();
     setCreateModal(false);
@@ -60,7 +64,7 @@ function CourseTable() {
     {
       title: "Tutor Name",
       dataIndex: "tutor",
-      render: (tutor) => tutor ? tutor.info.name : 'Unknown',
+      render: (tutor) => (tutor ? tutor.info.name : "Unknown"),
       width: "15%",
     },
     {
@@ -88,7 +92,7 @@ function CourseTable() {
             Edit
           </Button>
           <Popconfirm
-            title="Are you sure you want to delete this course?"
+            title="Bạn có chắc chắn muốn xóa khóa học này không?"
             onConfirm={() => handleDelete(record)}
             okText="Yes"
             cancelText="No"
