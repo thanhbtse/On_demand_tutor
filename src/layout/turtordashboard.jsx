@@ -13,6 +13,7 @@ import {
 } from "@ant-design/icons";
 import meme from "../assets/images/images.jpg";
 import hatlogo from "../assets/logo/187390886-black-graduate-hat-with-golden-element-on-white-background-flat-design-illustration-vector-graphics.jpg";
+import useAuth from "../hooks/useAuth";
 
 const { Content, Sider, Footer } = Layout;
 
@@ -26,19 +27,27 @@ function getItem(label, key, icon, children, path) {
   };
 }
 
-const items = [
-  getItem("Dashboard", "1", <HomeOutlined />, null, "/turtor/dashboard"),
-  getItem("Training program", "sub1", <BookOutlined />, [
-    getItem("My Course", "2", null, null, "/turtor/program/view"),
-    getItem("Create New Course", "3", null, null, "/turtor/program/create"),
-  ]),
-  getItem("Message", "4", <MessageOutlined />, "", "/turtor/message"),
-  getItem("Setting", "sub2", <SettingOutlined />, [
-    getItem("Account", "5", null, null, "/turtor/account"),
-  ]),
-];
-
 const TurtorDashboardLayout = ({ children }) => {
+  const { infoUser } = useAuth();
+
+  const items = [
+    getItem("Dashboard", "1", <HomeOutlined />, null, "/courses/dashboard"),
+    getItem("Training program", "sub1", <BookOutlined />, [
+      getItem(
+        "My Course",
+        "2",
+        null,
+        null,
+        `/courses/tutor/${infoUser._id}`
+      ),
+      getItem("Create New Course", "3", null, null, "/courses/program/create"),
+    ]),
+    getItem("Message", "4", <MessageOutlined />, "", "/courses/message"),
+    getItem("Setting", "sub2", <SettingOutlined />, [
+      getItem("Account", "5", null, null, "/courses/account"),
+    ]),
+  ];
+
   const [collapsed, setCollapsed] = useState(false);
 
   const storeDefaultSelectedKeys = (keys) => {
@@ -92,9 +101,6 @@ const TurtorDashboardLayout = ({ children }) => {
       <Menu.Item key="2">
         <Link to="/">Shop</Link>
       </Menu.Item>
-      <Menu.Item key="1" onClick={handleLogout}>
-        Logout
-      </Menu.Item>
     </Menu>
   );
 
@@ -146,7 +152,7 @@ const TurtorDashboardLayout = ({ children }) => {
           </div>
         </div>
         <Content className="mt-24 mx-4 ">
-          <div className="rounded-xl overflow-x-auto min-w-[250px] bg-[#f5f5f5]">
+          <div className="rounded-xl min-w-[200px] bg-[#f5f5f5]">
             {children}
           </div>
         </Content>

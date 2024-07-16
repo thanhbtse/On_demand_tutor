@@ -9,6 +9,7 @@ import {
   getTurtorbyuserId,
 } from "../api/tutor";
 import TurtorDetail from "../section/Turtor/turtorDetail";
+import { getCourseByTutor } from "../api/course";
 
 const useTutor = create((set) => ({
   tutorLists: [],

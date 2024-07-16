@@ -5,15 +5,11 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Layout, Menu, notification, Dropdown } from "antd";
 import {
-  SettingOutlined,
   UsergroupAddOutlined,
   HomeOutlined,
   BankOutlined,
-  BookOutlined,
-  FileSearchOutlined,
   UserAddOutlined,
   ShoppingOutlined,
-  CreditCardOutlined,
 } from "@ant-design/icons";
 import meme from "../assets/images/images.jpg";
 import hatlogo from "../assets/logo/187390886-black-graduate-hat-with-golden-element-on-white-background-flat-design-illustration-vector-graphics.jpg";
@@ -99,9 +95,6 @@ const DashboardLayout = ({ children }) => {
     <Menu>
       <Menu.Item key="2">
         <Link to="/">Shop</Link>
-      </Menu.Item>
-      <Menu.Item key="1" onClick={handleLogout}>
-        Logout
       </Menu.Item>
     </Menu>
   );
