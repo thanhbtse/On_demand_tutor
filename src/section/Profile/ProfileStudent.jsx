@@ -32,7 +32,7 @@ function ProfileStudent() {
         <Tabs defaultActiveKey="1" tabBarStyle={{ marginBottom: 0 }}>
           <TabPane tab="Tổng Quan" key="1">
             <h3 className="text-lg font-semibold mb-4">Tổng Quan</h3>
-            <Dashboard />
+            <Dashboard infoUser={infoUser} id={infoUser._id}/>
           </TabPane>
           <TabPane tab="Gia sư" key="2">
             <h3 className="text-lg font-semibold mb-4">Gia sư</h3>

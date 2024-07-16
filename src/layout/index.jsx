@@ -29,10 +29,10 @@ const App = ({ children }) => {
   // } = theme.useToken();
   const { isAuthenticated, infoUser } = useAuth();
   console.log("check infoUser", infoUser.role);
-  const imageURL =
-    infoUser && typeof infoUser === "object" && infoUser.image
-      ? `http://localhost:5000/${infoUser.image.replace(/\\/g, "/")}`
-      : undefined;
+  const imageURL = infoUser.image
+    ? `http://localhost:5000/${infoUser.image.replace(/\\/g, "/")}`
+    : "https://m.media-amazon.com/images/I/51dSHZNjFoL._UF894,1000_QL80_.jpg";
+
   const { logout } = useAuth();
   App.propTypes = {
     children: PropTypes.node.isRequired,
@@ -99,7 +99,7 @@ const App = ({ children }) => {
             </span>
           </div>
         </div>
-        <div className="flex">
+        <div className="flex flex-row py-4">
           <div>
             <Button className="mr-20 bg-[#ff4778] text-white font-bold text-[1rem] px-5  h-9 flex items-center justify-center rounded-sm	border-transparent my-4">
               <Link to="/tim-gia-su-online">Tìm Gia Sư</Link>
@@ -109,7 +109,7 @@ const App = ({ children }) => {
             <Link to="#" onClick={(e) => e.preventDefault()}>
               <Avatar
                 size="large"
-                icon={!imageURL ? <UserOutlined /> : undefined}
+                src={imageURL}
               />
             </Link>
           </Dropdown>
