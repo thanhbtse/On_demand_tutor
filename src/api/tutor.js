@@ -19,4 +19,9 @@ const deleteTutor = (id) => {
     return axiosClient.delete(`/tutors/${id}`);
 }
 
-export {getTutorList,createTutor,updateTutor,deleteTutor, getTutorDetail}
+const getTurtorbyuserId = (id) => {
+    return axiosClient.get(`/tutors/turtor-detail/${id}`);
+}
+
+
+export {getTutorList,createTutor,updateTutor,deleteTutor, getTutorDetail, getTurtorbyuserId}

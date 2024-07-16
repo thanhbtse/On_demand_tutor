@@ -15,4 +15,11 @@ const deleteCourse = (id) => {
     return axiosClient.delete(`/courses/${id}`);
 }
 
-export {getCourseList,createCourse,updateCourse,deleteCourse}
+const getcourseByTurorId = (id) => {
+    return axiosClient.get(`/courses/tutor/${id}`);
+}
+
+const getCourseDetail = (id) => {
+    return axiosClient.get(`/courses/${id}`);
+}
+export {getCourseList,createCourse,updateCourse,deleteCourse, getcourseByTurorId, getCourseDetail}

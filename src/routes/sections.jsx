@@ -78,7 +78,7 @@ export const Router = () => {
           element: <TutorSearchPage />,
         },
         {
-          path: "/dang-nhap",
+          path: "/tai-khoan",
           element: isAuthenticated ? <ProfilePage /> : <AccountPage />,
         },
         {
@@ -94,7 +94,7 @@ export const Router = () => {
           element: <DetailTutorPage />,
         },
         {
-          path: "/product-detail",
+          path: "/product-detail/:id",
           element: <ProductDetail />,
         },
         {
@@ -113,10 +113,10 @@ export const Router = () => {
           path: "/gio-hang",
           element: <CartPage />,
         },
-        {
-          path: "/ho-so",
-          element: <ProfilePage />,
-        },
+        // {
+        //   path: "/ho-so",
+        //   element: <ProfilePage />,
+        // },
         {
           path: "/gioi-thieu",
           element: <GioiThieuPage />,

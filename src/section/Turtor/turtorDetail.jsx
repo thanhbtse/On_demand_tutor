@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Breadcrumb, Image, Layout } from "antd";
 import {
   EnvironmentFilled,
@@ -7,9 +7,25 @@ import {
   StarFilled,
 } from "@ant-design/icons";
 import ProductList from "./productList";
-
+import { useParams } from "react-router-dom";
+import useTutor from "../../hooks/useTutor";
 const { Header, Content, Footer } = Layout;
+
 function TurtorDetail() {
+  const { id } = useParams();
+  console.log(id);
+  const { TurtorDetail, fetchTurtorbyuserId } =
+    useTutor();
+
+  useEffect(() => {
+    if (id) {
+      (async () => {
+        await fetchTurtorbyuserId(id);
+      })();
+    }
+  }, [id]);
+  console.log("TurtorDetail", TurtorDetail) ;
+
   return (
     <Layout>
       <Header className="bg-white border-b-2">
@@ -29,7 +45,9 @@ function TurtorDetail() {
             </a>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <p className="text-black font-bold text-base">Nguyễn Thị Diễm</p>
+            <p className="text-black font-bold text-base">
+              {TurtorDetail?.info?.name}
+            </p>
           </Breadcrumb.Item>
         </Breadcrumb>
       </Header>
@@ -44,12 +62,11 @@ function TurtorDetail() {
                 />
               </div>
               <div className="ml-10 mt-2 flex flex-col space-y-3">
-                <p className="text-2xl font-bold">Nguyễn Thị Diễm</p>
+                <p className="text-2xl font-bold">{TurtorDetail?.info?.name}</p>
                 <div className="flex flex-row space-x-2 text-base">
                   <EnvironmentFilled />
                   <p className="text-base">
-                    46, đường số 18, khu phố 5, Linh Trung, Thủ Đức, Linh Trung,
-                    Thủ Đức, Thành Phố Hồ Chí Minh, Việt Nam
+                  {TurtorDetail?.info?.address}
                   </p>
                 </div>
                 <div className="flex flex-row space-x-4 text-base">
@@ -70,7 +87,7 @@ function TurtorDetail() {
             </div>
           </div>
           <div className="mt-5">
-            <ProductList />
+            <ProductList id={TurtorDetail.userId} />
           </div>
         </div>
       </Content>

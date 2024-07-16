@@ -1,10 +1,10 @@
 import React from "react";
-import ViewDetailTutor from "../ViewDetailTutor";
+import TurtorDetail from "../../Turtor/turtorDetail.jsx";
 
 function TutorDetail() {
   return (
     <div>
-      <ViewDetailTutor />
+      <TurtorDetail />
     </div>
   );
 }

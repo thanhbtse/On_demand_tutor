@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import {  } from "../api/user";
 import { message } from "antd";
-import { createCourse, deleteCourse, getCourseList, updateCourse } from "../api/course";
+import { createCourse, deleteCourse, getCourseList, updateCourse , getcourseByTurorId, getCourseDetail } from "../api/course";
 
 const useCourse = create((set) => ({
     courseList: [],
@@ -49,6 +49,28 @@ const useCourse = create((set) => ({
         }
       } catch (err) {
         console.log("Error creating", err);
+      }
+    },
+    courseDetail:{},
+    fecthCourseDetail: async (id) => {
+      try{
+        const response = await getCourseDetail(id);
+        if(response && response.status === 200){
+          set({courseDetail: response.data || {}});
+        }
+      }catch(error){
+        console.error("Error fetching data:", error);
+      }
+    },
+    courseList:[],
+    fetchcourseListByTurtor: async (id) => {
+      try{
+        const response = await getcourseByTurorId(id);
+        if(response && response.status === 200){
+          set({courseList: response.data || {}});
+        }
+      }catch(error){
+        console.error("Error fetching data:", error);
       }
     },
 }));

@@ -26,4 +26,8 @@ const deleteUser = (id) => {
 const getUserById = (id) => {
     return axiosClient.get(`/user/user-profile/${id}`);
 }
-export {getUserList,createUser,updateUser,deleteUser, updateProfile, changePassword, getUserById}
+
+const getTurtorList = () => {
+    return axiosClient.get("/user/tutors");
+}
+export {getUserList,createUser,updateUser,deleteUser, updateProfile, changePassword, getUserById, getTurtorList}

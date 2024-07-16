@@ -6,18 +6,20 @@ import {
   getTutorDetail,
   getTutorList,
   updateTutor,
+  getTurtorbyuserId,
 } from "../api/tutor";
+import TurtorDetail from "../section/Turtor/turtorDetail";
 
 const useTutor = create((set) => ({
-  tutorList: [],
+  tutorLists: [],
   isloadingUserList: false,
   userTotalElements: "",
-  fetchTutorList: async () => {
+  fetchTutorLists: async () => {
     try {
       set({ isloadingUserList: true });
       const response = await getTutorList();
       if (response && response.status === 200) {
-        set({ tutorList: response.data || [] });
+        set({ tutorLists: response.data || [] });
         set({ userTotalElements: response?.data || "" });
       }
       set({ isloadingUserList: false });
@@ -71,6 +73,18 @@ const useTutor = create((set) => ({
       console.log("Error creating", err);
     }
   },
+  TurtorDetail: {},
+  fetchTurtorbyuserId: async (id) => {
+    try {
+      const response = await getTurtorbyuserId(id);
+      if (response && response.status === 200) {
+        set({ TurtorDetail: response.data || {} });
+      }
+      
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
 }));
 
 export default useTutor;

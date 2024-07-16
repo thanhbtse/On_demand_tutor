@@ -26,7 +26,7 @@ const ViewDetailTutor = () => {
   const { description, ratings = [], moreProducts = [] } = tutorDetail;
 
   const { name, image, address } = tutorDetail.info;
-
+                                                                    
   return (
     <div className="flex flex-col space-y-10 2xl:px-64 lg:px-16 xl:px-16 md:px-16 py-20">
       <div className="container mx-auto p-4">

@@ -52,7 +52,7 @@ const App = ({ children }) => {
       {isAuthenticated ? (
         <>
           <Menu.Item key="profile">
-            <Link to="/ho-so">Hồ Sơ</Link>
+            <Link to="/tai-khoan">Hồ Sơ</Link>
           </Menu.Item>
           {(infoUser.role === "admin" || infoUser.role === "moderator") && (
             <Menu.Item key="admin-dashboard">
@@ -70,7 +70,7 @@ const App = ({ children }) => {
         </>
       ) : (
         <Menu.Item key="login">
-          <Link to="/dang-nhap">Đăng nhập</Link>
+          <Link to="/tai-khoan">Đăng nhập</Link>
         </Menu.Item>
       )}
     </Menu>
