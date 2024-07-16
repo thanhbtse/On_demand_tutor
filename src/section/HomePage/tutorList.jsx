@@ -15,7 +15,7 @@ function ListTutor() {
     fetchTutorList();
     fetchTutorLists();
   }, []);
-
+  console.log("tutorList", tutorList);
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
@@ -34,7 +34,7 @@ function ListTutor() {
     <div className="flex flex-col space-y-8 2xl:px-[350px] lg:px-[60px] xl:px-[60px] md:px-[60px] py-20">
       <div className="filter-bar bg-white p-5 justify-center items-center shadow-lg">
         <div className="float-left font-[14px] pt-2">
-          Total tutors showing: {tutorList.length}
+          Total tutors showing: {tutorLists.length}
         </div>
         <div className="float-right flex flex-row space-x-4">
           <Button

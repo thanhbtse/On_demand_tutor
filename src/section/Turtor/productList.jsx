@@ -15,6 +15,7 @@ function ProductList({ id }) {
       })();
     }
   }, [id]);
+  console.log("id", id);
   console.log("courseList", courseList);
   const onSearch = (value, _e, info) => console.log(info?.source, value);
   return (

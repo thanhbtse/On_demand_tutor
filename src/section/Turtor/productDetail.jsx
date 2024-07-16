@@ -16,7 +16,8 @@ const ProductDetail = () => {
       })();
     }
   }, [id]);
-
+  console.log("courseDetail", courseDetail);
+  console.log("id", id);
   console.log("courseDetail", courseDetail.tutor);
   return (
     <div className="flex flex-col space-y-10 2xl:px-[350px] lg:px-[60px] xl:px-[60px] md:px-[60px] py-20">
@@ -125,9 +126,9 @@ const ProductDetail = () => {
               </button>
             </div>
           </TabPane>
-          <TabPane tab="Vendor Info" key="3">
+          {/* <TabPane tab="Vendor Info" key="3">
             <VenderInfo courseDetail={courseDetail.tutor}/>
-          </TabPane>
+          </TabPane> */}
           <TabPane tab="More Products" key="4">
             <p>Sản phẩm khác.</p>
           </TabPane>
