@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Form,
   Input,
@@ -9,20 +9,37 @@ import {
   Col,
   Radio,
   notification,
+  Select,
 } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import useUser from "../../hooks/useUser";
 import PropTypes from "prop-types";
 
-function Setting({ infoUser, id }) {
-  const { fetchUpdateUser, fectchChangePassword } = useUser();
+function Setting({ id }) {
+  const { fetchUpdateUser, fectchChangePassword, userDetails, fetchUserById } = useUser();
   const [isEditing, setIsEditing] = useState(false);
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
+  console.log("check id", id)
 
+  useEffect(() => {
+    if(id){
+      (async () => {
+        await fetchUserById(id);  
+      })();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (userDetails) {
+      form.setFieldsValue(userDetails);
+    }
+  }, [userDetails]);
+
+  console.log("userDetails", userDetails)
   const imageURL =
-    infoUser && infoUser.image
-      ? `http://localhost:5000/${infoUser.image.replace(/\\/g, "/")}`
+  userDetails && userDetails.image
+      ? `http://localhost:5000/${userDetails.image.replace(/\\/g, "/")}`
       : undefined;
 
   const onEdit = () => {
@@ -38,11 +55,14 @@ function Setting({ infoUser, id }) {
       if (fileList.length > 0) {
         formDataToSend.append("image", fileList[0].originFileObj);
       }
+      formDataToSend.append("role", formData["role"]);
       // Append other form data
       Object.keys(formData).forEach((key) => {
         formDataToSend.append(key, formData[key]);
       });
-
+      formDataToSend.forEach((value, key) => {
+        console.log(key, value);
+      });
       await fetchUpdateUser(id, formDataToSend);
       notification.success({
         message: "Update Successful",
@@ -51,6 +71,7 @@ function Setting({ infoUser, id }) {
       });
       setIsEditing(false); // Reset editing state
       form.resetFields(); // Reset form fields
+      await fetchUserById(id); 
     } catch (error) {
       notification.error({
         message: "Update Failed",
@@ -70,6 +91,7 @@ function Setting({ infoUser, id }) {
       form.resetFields();
     }
   };
+
   return (
     <div className="py-20 px-44">
       <Row gutter={16} c>
@@ -98,7 +120,7 @@ function Setting({ infoUser, id }) {
             <Form
               form={form}
               layout="vertical"
-              initialValues={infoUser}
+              initialValues={userDetails.data}
               onFinish={onSubmit}
             >
               <Form.Item
@@ -114,11 +136,30 @@ function Setting({ infoUser, id }) {
               <Form.Item label="Email" name="email" style={{ width: 400 }}>
                 <Input placeholder="Địa chỉ email" readOnly={!isEditing} />
               </Form.Item>
-              <Form.Item name="role">
-                <Radio.Group disabled={!isEditing}>
-                  <Radio value="student">I am a customer</Radio>
-                  <Radio value="tutor">I am a vendor</Radio>
-                </Radio.Group>
+              <Form.Item label="Bằng cấp" name="degree" style={{ width: 400 }}>
+                <Input
+                  placeholder="Nhập bằng cấp của bạn"
+                  readOnly={!isEditing}
+                />
+              </Form.Item>
+              <Form.Item label="Kỹ năng" name="skills" style={{ width: 400 }}>
+                <Select
+                  mode="tags"
+                  style={{ width: "100%" }}
+                  placeholder="Thêm kỹ năng"
+                  disabled={!isEditing}
+                >
+                </Select>
+              </Form.Item>
+              <Form.Item
+                label="Thông tin định danh"
+                name="identityInfo"
+                style={{ width: 400 }}
+              >
+                <Input
+                  placeholder="Thông tin định danh"
+                  readOnly={!isEditing}
+                />
               </Form.Item>
               {!isEditing ? (
                 <Button
@@ -147,6 +188,8 @@ function Setting({ infoUser, id }) {
               )}
             </Form>
           </div>
+
+          {/* Change password */}
           <div>
             <h3 className="text-lg font-semibold my-4">Đổi mật khẩu</h3>
             <Form layout="vertical" onFinish={onChangepassword}>

@@ -1,16 +1,12 @@
 import { create } from "zustand";
-import { updateProfile, changePassword,  createUser, deleteUser, getUserList, updateUser } from "../api/user";
+import { updateProfile, changePassword,  createUser, deleteUser, getUserList, updateUser, getUserById } from "../api/user";
 import { notification } from "antd";
 const useUser = create((set) => ({
-  infoUser: {},
+ 
   fetchUpdateUser: async (id, data) => {
     try {
       const res = await updateProfile(id, data);
-      console.log("check res", res);
-      if (res && res.status === 200) {
-        set({ infoUser: res?.data || {} });
-      }
-      console.log("check data", infoUser);
+      console.log("check data", data);
     } catch (err) {
       console.log("Error fetching userInfo", err);
     }
@@ -86,6 +82,19 @@ const useUser = create((set) => ({
         console.log("Error creating", err);
       }
     },
+    userDetails: {},
+    fetchUserById: async (id) => {
+      try {
+        const response = await getUserById(id);
+        if (response && response.status === 200) {
+          set({ userDetails: response.data || {} });
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
 }));
 
+
+    
 export default useUser;

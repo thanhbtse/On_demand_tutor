@@ -29,9 +29,11 @@ const App = ({ children }) => {
   // } = theme.useToken();
   const { isAuthenticated, infoUser } = useAuth();
   console.log("check infoUser", infoUser.role);
-  const imageURL = infoUser.image
-    ? `http://localhost:5000/${infoUser.image.replace(/\\/g, "/")}`
-    : "https://m.media-amazon.com/images/I/51dSHZNjFoL._UF894,1000_QL80_.jpg";
+  const imageURL = infoUser && infoUser.image ? (
+    `http://localhost:5000/${infoUser.image.replace(/\\/g, "/")}`
+  ) : (
+    <UserOutlined />
+  );
 
   const { logout } = useAuth();
   App.propTypes = {
@@ -107,10 +109,7 @@ const App = ({ children }) => {
           </div>
           <Dropdown overlay={menu} trigger={["click"]}>
             <Link to="#" onClick={(e) => e.preventDefault()}>
-              <Avatar
-                size="large"
-                src={imageURL}
-              />
+              <Avatar size="large" src={imageURL} />
             </Link>
           </Dropdown>
         </div>

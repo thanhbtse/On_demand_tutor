@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Button, Tabs, Rate } from "antd";
 import { Link } from "react-router-dom";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 const { Meta } = Card;
-
+import useUser from "../../hooks/useUser";
 const tutors = [
   {
     id: 1,
@@ -28,13 +28,22 @@ const tutors = [
   },
 ];
 
-function Dashboard( {infoUser, id }) {
+function Dashboard( {id }) {
+  const { userDetails, fetchUserById } = useUser();
+
+  useEffect(() => {
+    if(id){
+      (async () => {
+        await fetchUserById(id);  
+      })();
+    }
+  }, []);
 
   return (
     <div>
       {" "}
       <h3 className="text-lg font-semibold mb-4">
-        Hãy bắt đầu tìm gia sư cho {infoUser.name}
+        Hãy bắt đầu tìm gia sư cho {userDetails.name}
       </h3>
       {/* turtor card*/}
       <div className="flex space-x-3">
