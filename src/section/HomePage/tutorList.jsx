@@ -9,11 +9,11 @@ import useTutor from "../../hooks/useTutor";
 import shoplogo from "../../assets/images/default-store-banner.png";
 function ListTutor() {
   const [showFilter, setShowFilter] = useState(false);
-  const { fetchTutorList, tutorList, isloadingTutorList } = useUser();
-  const { fetchTutorLists, tutorLists } = useTutor();
+  const { fetchTutorLists, tutorLists, isloadingTutorList } = useUser();
+  const { fetchTutorList, tutorList } = useTutor();
   useEffect(() => {
     fetchTutorList();
-    fetchTutorLists();
+    fetchTutorList();
   }, []);
   console.log("tutorList", tutorList);
   const handleChange = (value) => {
@@ -34,7 +34,7 @@ function ListTutor() {
     <div className="flex flex-col space-y-8 2xl:px-[350px] lg:px-[60px] xl:px-[60px] md:px-[60px] py-20">
       <div className="filter-bar bg-white p-5 justify-center items-center shadow-lg">
         <div className="float-left font-[14px] pt-2">
-          Total tutors showing: {tutorLists.length}
+          Total tutors showing: {tutorList.length}
         </div>
         <div className="float-right flex flex-row space-x-4">
           <Button
@@ -70,9 +70,9 @@ function ListTutor() {
         </div>
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {tutorLists.map((tutor) => {
+        {tutorList.map((tutor) => {
           return (
-            <Link to={`/tutors/${tutor.userId}`}>
+            <Link to={`/tutors/${tutor._id}`}>
               <Card
                 hoverable
                 className="shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105"

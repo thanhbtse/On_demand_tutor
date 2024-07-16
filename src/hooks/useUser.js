@@ -101,14 +101,14 @@ const useUser = create((set) => ({
       console.error("Error fetching data:", error);
     }
   },
-  tutorList: [],
+  tutorLists: [],
   isloadingTutorList: false,
-  fetchTutorList: async () => {
+  fetchTutorLists: async () => {
     try {
       set({ isloadingTutorList: true });
       const response = await getTurtorList();
       if (response && response.status === 200) {
-        set({ tutorList: response.data || [] });
+        set({ tutorLists: response.data || [] });
         set({ isloadingTutorList: false });
       }
       return response;
