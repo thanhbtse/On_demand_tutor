@@ -152,7 +152,7 @@ const TurtorDashboardLayout = ({ children }) => {
           </div>
         </div>
         <Content className="mt-24 mx-4 ">
-          <div className="rounded-xl overflow-x-auto min-w-[250px] bg-[#f5f5f5]">
+          <div className="rounded-xl min-w-[200px] bg-[#f5f5f5]">
             {children}
           </div>
         </Content>
