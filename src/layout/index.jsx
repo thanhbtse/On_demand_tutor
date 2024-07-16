@@ -1,12 +1,25 @@
 import React, { Children } from "react";
-import { Flex, Layout, Input, theme, Row, Col, Button, Divider } from "antd";
+import {
+  Flex,
+  Layout,
+  Input,
+  theme,
+  Row,
+  Col,
+  Button,
+  Divider,
+  Avatar,
+  Dropdown,
+  Menu,
+  notification,
+} from "antd";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import facebooklogo from "../assets/logo/icons8-facebook-48.png";
 import hatlogo from "../assets/images/gia-su-online-logo-png-v2-60.png";
 import animateLogo from "../assets/logo/icons8-youtube.gif";
-import { SearchOutlined } from "@ant-design/icons";
-
+import { SearchOutlined, UserOutlined } from "@ant-design/icons";
+import useAuth from "../hooks/useAuth";
 const { Header, Content, Footer } = Layout;
 const facebookLink = "https://www.facebook.com/tanthanh.bui.94617/";
 const youtubeLink = "https://www.youtube.com/watch?v=xvFZjo5PgG0";
@@ -14,11 +27,52 @@ const App = ({ children }) => {
   // const {
   //   token: {borderRadiusLG : 1, },
   // } = theme.useToken();
-
+  const { isAuthenticated, infoUser } = useAuth();
+  console.log("check infoUser", infoUser.role);
+  const imageURL =
+    infoUser && typeof infoUser === "object" && infoUser.image
+      ? `http://localhost:5000/${infoUser.image.replace(/\\/g, "/")}`
+      : undefined;
+  const { logout } = useAuth();
   App.propTypes = {
     children: PropTypes.node.isRequired,
   };
-
+  const handleLogout = () => {
+    logout();
+    notification.success({
+      message: "Logout Successful",
+      description: "You have successfully logged out.",
+      duration: 2,
+    });
+  };
+  const menu = (
+    <Menu>
+      {isAuthenticated ? (
+        <>
+          <Menu.Item key="profile">
+            <Link to="/tai-khoan">Hồ Sơ</Link>
+          </Menu.Item>
+          {(infoUser.role === "admin" || infoUser.role === "moderator") && (
+            <Menu.Item key="admin-dashboard">
+              <Link to="/admin/dashboard">Dashboard</Link>
+            </Menu.Item>
+          )}
+          {infoUser.role === "tutor" && (
+            <Menu.Item key="turtor-dashboard">
+              <Link to="/turtor/dashboard">Dashboard</Link>
+            </Menu.Item>
+          )}
+          <Menu.Item key="logout">
+            <p onClick={handleLogout}>đăng xuất</p>
+          </Menu.Item>
+        </>
+      ) : (
+        <Menu.Item key="login">
+          <Link to="/tai-khoan">Đăng nhập</Link>
+        </Menu.Item>
+      )}
+    </Menu>
+  );
   return (
     <Layout>
       <Header
@@ -45,9 +99,21 @@ const App = ({ children }) => {
             </span>
           </div>
         </div>
-        <Button className="mr-36 bg-[#ff4778] text-white font-bold text-[1rem] px-5 py-3 h-9 flex items-center justify-center rounded-sm	border-transparent">
-          <Link to="/tim-gia-su-online">Tìm Gia Sư</Link>
-        </Button>
+        <div className="flex">
+          <div>
+            <Button className="mr-20 bg-[#ff4778] text-white font-bold text-[1rem] px-5  h-9 flex items-center justify-center rounded-sm	border-transparent my-4">
+              <Link to="/tim-gia-su-online">Tìm Gia Sư</Link>
+            </Button>
+          </div>
+          <Dropdown overlay={menu} trigger={["click"]}>
+            <Link to="#" onClick={(e) => e.preventDefault()}>
+              <Avatar
+                size="large"
+                icon={!imageURL ? <UserOutlined /> : undefined}
+              />
+            </Link>
+          </Dropdown>
+        </div>
       </Header>
       <Header className="bg-[#eee]">
         <div className="flex justify-center items-center h-full space-x-2">
@@ -89,9 +155,7 @@ const App = ({ children }) => {
         </div>
         <Footer className="bottom-20 bg-[#eee]">
           <div className="ml-3 md:ml-24 mr-2 md:mr-auto">
-            <Row
-              gutter={[48, 16]}
-            >
+            <Row gutter={[48, 16]}>
               <Col span={7}>
                 <div className="flex flex-col space-y-2 md:space-y-6 lg:space-y-4 xl:space-y-6 2xl:space-y-8 font-mono">
                   <span className="font-bold text-[18px]">GIASUONLINE.VN</span>

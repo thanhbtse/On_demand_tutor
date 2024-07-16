@@ -1,0 +1,1 @@
+export {default as CourseTableView} from "./courseTableView.jsx"
