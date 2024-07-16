@@ -51,7 +51,6 @@ function ProfileStudent() {
             <PurchaseHistory />
           </TabPane>
           <TabPane tab="Cài đặt" key="6">
-            <h3 className="text-lg font-semibold mb-4">Cài đặt tài khoản</h3>
             <Setting infoUser={infoUser} id={infoUser._id} />{" "}
           </TabPane>
         </Tabs>

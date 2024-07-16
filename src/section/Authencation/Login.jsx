@@ -58,7 +58,7 @@ const LoginForm = () => {
       setIsLoggingIn(false);
       notification.error({
         message: "Login Failed",
-        description: "An error occurred during login.",
+        description: error.response.data.message,
         duration: 2,
       });
     }
